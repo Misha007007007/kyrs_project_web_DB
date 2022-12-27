@@ -18,16 +18,19 @@
             <div class="nav">
                 <ul class = "menu">
                     <li>
-                        <a href="#">
+                        <a href="index.php">
                             Ice fields
                         </a>
                     </li>
-
-                    <li>
-                        <a href="authorization.php">
-                            Личный кабинет
-                        </a>
-                    </li>
+                    <?php
+                        require("session.php");
+                        if($session_user['role'] == 1){
+                            echo '<li> <a href="regUser.php"> Зарегистрировать пользователя </a> </li>';
+                        }else{
+                            echo "";
+                        }  
+                        
+                    ?>
                 </ul>
             </div>
         </div>
@@ -35,26 +38,9 @@
 
     <section id = "about" class="about">
         <div class="container">
-            <h1> Ледовые поля </h1>
-            <p> Привет, здесь собрано большинство мест Москвы, где ты можешь покататься на коньках и отдохнуть. Выбери один их понравившихся тебе пунктов. </p>
-            <ul class = "functionList">
-                <li>
-                    <a href="#">Просмотреть список всех добавленных</a>
-                </li>
-                <br>
-                <li>
-                    <a href="#">Подобрать в своем районе</a><br>
-                </li>
-                <br>
-                <li>
-                    <a href="#">Подобрать в административном округе</a>
-                </li>
-                <br>
-                <li>
-                    <a href="#">Добавить запись</a>
-                </li>
-                <br>
-            </ul>
+           <?php
+
+           ?>
         </div>
     </section>
 
