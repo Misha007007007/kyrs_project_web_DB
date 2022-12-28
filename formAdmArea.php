@@ -18,14 +18,8 @@
             <div class="nav">
                 <ul class = "menu">
                     <li>
-                        <a href="#">
+                        <a href="index.php">
                             Ice fields
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="authorization.php">
-                            Личный кабинет
                         </a>
                     </li>
                 </ul>
@@ -34,27 +28,24 @@
     </header>
 
     <section id = "about" class="about">
+        <?php
+            include "connectdb.php";
+            $query = "SELECT DISTINCT admArea FROM `field` ORDER BY admArea";
+            $result = mysqli_query($connect, $query);
+        ?>
         <div class="container">
-            <h1> Ледовые поля </h1>
-            <p> Привет, здесь собрано большинство мест Москвы, где ты можешь покататься на коньках и отдохнуть. Выбери один их понравившихся тебе пунктов. </p>
-            <ul class = "functionList">
-                <li>
-                    <a href="#">Просмотреть список всех добавленных</a>
-                </li>
-                <br>
-                <li>
-                    <a href="formDistrict.php">Подобрать в своем районе</a><br>
-                </li>
-                <br>
-                <li>
-                    <a href="formDistrict.php">Подобрать в административном округе</a>
-                </li>
-                <br>
-                <li>
-                    <a href="#">Добавить запись</a>
-                </li>
-                <br>
-            </ul>
+            <p> Выбери из списка административный округ Москвы и мы подберем для тебя катки в нем. </p>
+            <div class="connection" id = "connection">
+                <form action="admArea.php" method="post">
+                    <select size="1" style="width: 1000px; " name = "admArea" id = "admArea">
+                        <option disabled>Выберети один вариант</option>
+                        <?php while($row = mysqli_fetch_assoc($result)){?>
+                            <option value="<?php echo $row['admArea']?>"><?php echo $row['admArea']?></option>
+                        <?php }?>
+                    </select>
+                    <input type="submit" value="Подобрать">
+                </form>
+            </div>
         </div>
     </section>
 

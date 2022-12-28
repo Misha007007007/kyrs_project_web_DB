@@ -29,23 +29,25 @@
 
     <section id = "about" class="about">
         <div class="container">
-            <p> Выбери из списка район Москвы и мы подберем для тебя катки в этом районе. </p>
-            <div class="connection" id = "connection">
-                <form action="district.php" method="post">
-                    <select size="1" style="width: 1000px; " name = "district" id = "district">
-                        <option disabled>Выберети один вариант</option>
-                        <?php
-                            include "connectdb.php";
-                            $query = "SELECT DISTINCT district FROM `field` ORDER BY district";
-                            $result = mysqli_query($connect, $query);
-                            while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                        <option value="<?php echo $row['district']?>" name = "1"><?php echo $row['district']?></option>
-                        <?php }?>                       
-                    </select>
-                    <input type="submit" value="Подобрать">
-                </form>
-            </div>
+            <?php
+                echo "Вы выбрали ";
+                echo $_POST['admArea'];?> <br><?php
+                include "connectdb.php";
+                
+                $admArea = $_POST['admArea'];
+                
+                $stmt = $connect->prepare("SELECT * FROM `field` WHERE admArea = ?");
+                $stmt->bind_param("s", $admArea);
+                $result = $stmt->execute();
+                
+                $result = mysqli_stmt_get_result($stmt);
+                $stmt->close();
+
+                //$row = mysqli_fetch_row($result);
+                while($row = mysqli_fetch_assoc($result)){
+                    echo $row['id'];?> <br><?php
+                }
+            ?>
         </div>
     </section>
 
