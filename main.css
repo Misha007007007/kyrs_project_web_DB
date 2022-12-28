@@ -109,7 +109,7 @@ li a:hover{
 .connection{
     
     color: #fff;
-    background: #07bbba;
+    /* background: #07bbba; */
     position: fixed; top: 50%; left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -121,7 +121,7 @@ li a:hover{
     
     color: #fff;
     padding: 50px;
-    background: #07bbba;
+    /* background: #07bbba; */
     position: fixed; top: 50%; left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);

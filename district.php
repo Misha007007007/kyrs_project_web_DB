@@ -18,14 +18,8 @@
             <div class="nav">
                 <ul class = "menu">
                     <li>
-                        <a href="#">
+                        <a href="index.php">
                             Ice fields
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="authorization.php">
-                            Личный кабинет
                         </a>
                     </li>
                 </ul>
@@ -35,26 +29,25 @@
 
     <section id = "about" class="about">
         <div class="container">
-            <h1> Ледовые поля </h1>
-            <p> Привет, здесь собрано большинство мест Москвы, где ты можешь покататься на коньках и отдохнуть. Выбери один их понравившихся тебе пунктов. </p>
-            <ul class = "functionList">
-                <li>
-                    <a href="#">Просмотреть список всех добавленных</a>
-                </li>
-                <br>
-                <li>
-                    <a href="formDistrict.php">Подобрать в своем районе</a><br>
-                </li>
-                <br>
-                <li>
-                    <a href="#">Подобрать в административном округе</a>
-                </li>
-                <br>
-                <li>
-                    <a href="#">Добавить запись</a>
-                </li>
-                <br>
-            </ul>
+            <?php
+                echo "Вы выбрали ";
+                echo $_POST['district'];?> <br><?php
+                include "connectdb.php";
+                
+                $dictrict = $_POST['district'];
+                
+                $stmt = $connect->prepare("SELECT * FROM `field` WHERE district = ?");
+                $stmt->bind_param("s", $dictrict);
+                $result = $stmt->execute();
+                
+                $result = mysqli_stmt_get_result($stmt);
+                $stmt->close();
+
+                //$row = mysqli_fetch_row($result);
+                while($row = mysqli_fetch_assoc($result)){
+                    echo $row['id'];?> <br><?php
+                }
+            ?>
         </div>
     </section>
 
