@@ -36,7 +36,6 @@
                 <input type="text" maxlength="30" size="40" name="login" placeholder="Введите Ваш логин"><br>
                 <input type="password" maxlength="30" size="40" name="password" placeholder="Введите Ваш пароль"><br>
                 <input type="submit" value="Авторизоваться"><br>
-                
             </form>
         </div>
     </section>

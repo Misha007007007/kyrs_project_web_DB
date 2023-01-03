@@ -81,7 +81,13 @@ li a:hover{
     padding: auto;
     margin: auto; 
 }
-
+.validation{
+    text-align: center;
+    margin-top: 10px; 
+    /* border: 4px double black; Параметры границы */
+    /* background: #07bbba; */
+    padding: 10px; /* Поля вокруг текста */
+}
 .footer {
     position: absolute;
     left: 0;
