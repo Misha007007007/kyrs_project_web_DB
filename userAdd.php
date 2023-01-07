@@ -2,8 +2,13 @@
 require("connectdb.php");
 require("session.php");
 $examination = 2;
-echo count($_POST);
-if(count($_POST) == 6){
+// echo count($_POST);
+if($_POST['user_name'] == null || $_POST['name'] == null || $_POST['admArea'] == null || $_POST['district'] == null || $_POST['address'] == null || $_POST['comment'] == null){
+    echo "Невозможно добавить данное место. Вы заполнили не все поля.";
+    header('Refresh: 2; create.php');
+    
+}
+else{
     $stmt = $connect->prepare("SELECT * FROM `addedPlaces` WHERE `admArea` = ? AND `district` = ? AND `address` = ?");
     $stmt->bind_param("sss", $_POST['admArea'], $_POST['district'], $_POST['address']);
 
@@ -20,7 +25,7 @@ if(count($_POST) == 6){
         header('Refresh: 2; index.php');
     }
     else{
-        echo "Невозможно добавить данное место. Возможно, она уже есть в нашей базе данных или вы заполнили не все поля.";
+        echo "Невозможно добавить данное место. Возможно, оно уже есть в нашей базе данных.";
         header('Refresh: 2; create.php');
     }
 }
