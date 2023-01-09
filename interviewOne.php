@@ -1,4 +1,5 @@
-<?php require("header.php") ?>
+<?php require("layoutFiles/header.php") ?>
+
                 </ul>
             </div>
         </div>
@@ -49,4 +50,4 @@
             </div>
         </div>
     </section>
-    <?php require("footer.php") ?>
+    <?php require("layoutFiles/footer.php") ?>

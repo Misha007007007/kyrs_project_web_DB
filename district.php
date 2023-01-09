@@ -1,9 +1,5 @@
-<?php require("header.php") ?>
-                    <li>
-                        <a href="index.php">
-                            Ice fields
-                        </a>
-                    </li>
+<?php require("layoutFiles/header.php") ?>
+
                 </ul>
             </div>
         </div>
@@ -12,11 +8,22 @@
     <section id = "about" class="about">
         <div class="container">
             <?php
-                echo "Вы выбрали ";
-                echo $_POST['district'];?> <br><?php
+                error_reporting(0);
+                $dictrict;
+                $interview = "Район";
+                echo "<h3>Вы выбрали ";
+                if($_POST['district'] == ""){
+                    echo $_GET['district'];
+                    $dictrict = $_GET['district'];
+                }
+                else{
+                    echo $_POST['district'];
+                    $dictrict = $_POST['district'];
+                }
+                echo "</h3>";
+                
                 include "connectdb.php";
                 
-                $dictrict = $_POST['district'];
                 
                 $stmt = $connect->prepare("SELECT * FROM `field` WHERE district = ?");
                 $stmt->bind_param("s", $dictrict);
@@ -26,10 +33,11 @@
                 $stmt->close();
 
                 //$row = mysqli_fetch_row($result);
-                while($row = mysqli_fetch_assoc($result)){
-                    echo $row['id'];?> <br><?php
+                while($entry = mysqli_fetch_assoc($result)){
+                    require("shortInfo.php");
+                    echo ' <li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&district='.$dictrict.'">Дополнительная информация</a></li></ul>';
                 }
             ?>
         </div>
     </section>
-    <?php require("footer.php") ?>
+    <?php require("layoutFiles/footer.php") ?>

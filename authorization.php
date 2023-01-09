@@ -1,4 +1,5 @@
-<?php require("header.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+
                     
                 </ul>
             </div>
@@ -17,4 +18,4 @@
             </form>
         </div>
     </section>
-    <?php require("footer.php") ?>
+    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>

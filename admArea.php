@@ -1,9 +1,4 @@
-<?php require("header.php") ?>
-                    <li>
-                        <a href="index.php">
-                            Ice fields
-                        </a>
-                    </li>
+<?php require("layoutFiles/header.php") ?>
                 </ul>
             </div>
         </div>
@@ -12,11 +7,22 @@
     <section id = "about" class="about">
         <div class="container">
             <?php
-                echo "Вы выбрали ";
-                echo $_POST['admArea'];?> <br><?php
+                $admArea;
+                $interview = "Округ";
+                error_reporting(0);
+                echo "<h3>Вы выбрали ";
+                if($_POST['admArea'] == ""){
+                    echo $_GET['admArea'];
+                    $admArea = $_GET['admArea'];
+                }
+                else{
+                    echo $_POST['admArea'];
+                    $admArea = $_POST['admArea'];
+                }
+                echo "</h3>";
                 include "connectdb.php";
                 
-                $admArea = $_POST['admArea'];
+                
                 
                 $stmt = $connect->prepare("SELECT * FROM `field` WHERE admArea = ?");
                 $stmt->bind_param("s", $admArea);
@@ -26,10 +32,11 @@
                 $stmt->close();
 
                 //$row = mysqli_fetch_row($result);
-                while($row = mysqli_fetch_assoc($result)){
-                    echo $row['id'];?> <br><?php
+                while($entry = mysqli_fetch_assoc($result)){
+                    require("shortInfo.php");
+                    echo ' <li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&admArea='.$admArea.'">Дополнительная информация</a></li></ul>';
                 }
             ?>
         </div>
     </section>
-    <?php require("footer.php") ?>
+    <?php require("layoutFiles/footer.php") ?>

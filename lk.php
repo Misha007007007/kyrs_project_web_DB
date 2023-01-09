@@ -1,4 +1,5 @@
-<?php require("header.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+
                     <?php
                         require("session.php");
                         if($session_user['role'] == 1){
@@ -24,7 +25,7 @@
                     echo "Необходимо авторизоваться.";
                 }
                 else if(!$result || mysqli_num_rows($result) == 0){
-                    echo "В базе данных нет страниц.";
+                    echo "<h3> Нет записей для валидации. </h3>";
                 }
                 else{
                     // $entry = mysqli_fetch_assoc($result);
@@ -50,4 +51,4 @@
            ?>
         </div>
     </section>
-    <?php require("footer.php") ?>
+    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>

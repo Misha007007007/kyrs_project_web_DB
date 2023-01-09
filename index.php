@@ -1,4 +1,5 @@
-<?php require("header.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+
                     <li>
                         <a href="authorization.php">
                             Личный кабинет
@@ -38,15 +39,4 @@
             
         </div>
     </section>
-<?php require("footer.php") ?>
-    <footer id = "footer" class="footer">
-        <div class="container">
-            <li>
-                <?php
-                    echo date('Сформировано d.m.Y в G:i:s', time()+3600*3);
-                ?>
-            </li>
-        </div>
-    </footer>
-</body>
-</html>
+    <?php require("layoutFiles/footer.php") ?>

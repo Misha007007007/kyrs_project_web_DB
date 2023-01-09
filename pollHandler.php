@@ -1,4 +1,5 @@
-<?php require("header.php") ?>
+<?php require("layoutFiles/header.php") ?>
+
                 </ul>
             </div>
         </div>
@@ -21,65 +22,50 @@
 
                 $paid;
                 $seats;
-                // "'нет' OR hasEquipmentRental = 'да'";
-                error_reporting(0);
-                if($_POST['hasEquipmentRental'] == null) $hasEquipmentRental = 'нет';
-                else $hasEquipmentRental = 'да';
-
-                if($_POST['hasTechService'] == null) $hasTechService = 'нет';
-                else $hasTechService = 'да';
-
-                if($_POST['hasDressingRoom'] == null) $hasDressingRoom = 'нет';
-                else $hasDressingRoom = 'да';
-
-                if($_POST['hasEatery'] == null) $hasEatery = 'нет';
-                else $hasEatery = 'да';
-
-                if($_POST['hasToilet'] == null) $hasToilet = 'нет';
-                else $hasToilet = 'да';
-
-                if($_POST['hasWifi'] == null) $hasWifi = 'нет';
-                else $hasWifi = 'да';
-
-                if($_POST['hasCashMachine'] == null) $hasCashMachine = 'нет';
-                else $hasCashMachine = 'да';
-
-                if($_POST['hasFirstAidPost'] == null) $hasFirstAidPost = 'нет';
-                else $hasFirstAidPost = 'да';
-
-                if($_POST['hasMusic'] == null) $hasMusic = 'нет';
-                else $hasMusic = 'да';
-
-                if($_POST['paid'] == null) $paid = 'платно';
-                else $paid = 'бесплатно';
-
-                if($_POST['seats'] == null) $seats = 0;
-                else $seats = 1;
-
-                echo $hasEquipmentRental;
                 
-                if($_POST['district'] == "Район не важен"){
-                    $stmt = $connect->prepare("SELECT * FROM `field` WHERE hasEquipmentRental = ? AND hasTechService = ? AND hasDressingRoom = ? AND hasEatery = ? AND hasToilet = ? AND hasWifi = ? AND hasCashMachine = ? AND hasFirstAidPost = ? AND hasMusic = ? AND paid = ? AND seats >= ?");
-                    $stmt->bind_param("ssssssssssi", $hasEquipmentRental, $hasTechService, $hasDressingRoom, $hasEatery, $hasToilet, $hasWifi, $hasCashMachine, $hasFirstAidPost, $hasMusic, $paid, $seats);
-                    
-                    $result = $stmt->execute();
-                    
-                    $result = mysqli_stmt_get_result($stmt);
-                    $stmt->close();
-                }
-                else{
-                    $dictrict = $_POST['district'];
-                    $stmt = $connect->prepare("SELECT * FROM `field` WHERE district = ? AND hasEquipmentRental = ? AND hasTechService = ? AND hasDressingRoom = ? AND hasEatery = ? AND hasToilet = ? AND hasWifi = ? AND hasCashMachine = ? AND hasFirstAidPost = ? AND hasMusic = ? AND paid = ? AND seats >= ?");
-                    $stmt->bind_param("sssssssssssi", $dictrict, $hasEquipmentRental, $hasTechService, $hasDressingRoom, $hasEatery, $hasToilet, $hasWifi, $hasCashMachine, $hasFirstAidPost, $hasMusic, $paid, $seats);
-                    $result = $stmt->execute();
-                    
-                    $result = mysqli_stmt_get_result($stmt);
-                    $stmt->close();
-                    
-                }
+                if($_POST['district'] == 'Район не важен') $dictrict = "SELECT * FROM `field` WHERE district LIKE '%' ";
+                else $dictrict = "SELECT * FROM `field` WHERE district = \"".$_POST['district']."\" ";  
+                
+                if($_POST['hasEquipmentRental'] == null) $hasEquipmentRental = "AND hasEquipmentRental LIKE '%' ";
+                else $hasEquipmentRental = "AND hasEquipmentRental = 'да' ";
+
+                if($_POST['hasTechService'] == null) $hasTechService = "AND hasTechService LIKE '%' ";
+                else $hasTechService = "AND hasTechService = 'да' ";
+
+                if($_POST['hasDressingRoom'] == null) $hasDressingRoom = "AND hasDressingRoom LIKE '%' ";
+                else $hasDressingRoom = "AND hasDressingRoom = 'да' ";
+
+                if($_POST['hasEatery'] == null) $hasEatery = "AND hasEatery LIKE '%' ";
+                else $hasEatery = "AND hasEatery = 'да' ";
+
+                if($_POST['hasToilet'] == null) $hasToilet = "AND hasToilet LIKE '%' ";
+                else $hasToilet = "AND hasToilet = 'да' ";
+
+                if($_POST['hasWifi'] == null) $hasWifi = "AND hasWifi LIKE '%' ";
+                else $hasWifi = "AND hasWifi = 'да' ";
+
+                if($_POST['hasCashMachine'] == null) $hasCashMachine = "AND hasCashMachine LIKE '%' ";
+                else $hasCashMachine = "AND hasCashMachine = 'да' ";
+
+                if($_POST['hasFirstAidPost'] == null) $hasFirstAidPost = "AND hasFirstAidPost LIKE '%' ";
+                else $hasFirstAidPost = "AND hasFirstAidPost = 'да' ";
+
+                if($_POST['hasMusic'] == null) $hasMusic = "AND hasMusic LIKE '%' ";
+                else $hasMusic = "AND hasMusic = 'да' ";
+
+                if($_POST['paid'] == null) $paid = "AND paid LIKE '%' ";
+                else $paid = "AND paid = 'бесплатно' ";
+
+                if($_POST['seats'] == null) $seats = "AND seats >= 0; ";
+                else $seats = "AND seats >= 1; ";
+
+                $query = $dictrict.$hasEquipmentRental.$hasTechService.$hasDressingRoom.$hasEatery.$hasToilet.$hasWifi.$hasCashMachine.$hasFirstAidPost.$hasMusic.$paid.$seats;
+                echo $query;
+                  
+                $result = mysqli_query($connect, $query);
                 
                 
-                if(mysqli_fetch_assoc($result) == 0){
+                if(!$result || mysqli_num_rows($result) == 0){
                     echo "<h3>К сожалению мы не нашли для Вас подходящего ледового поля.</h3>
                     <h3>Вы можете <a href='interviewOne.php'>пройти опрос заново<a>.</h3>
                     <h3>Посмотреть доступные ледовые поля в Вашем <a href='formDistrict.php'>районе</a> или <a href='formDistrict.php'>Административном округе</a>.</h3>
@@ -113,13 +99,13 @@
                             
                             echo '
                             <li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'">Дополнительная информация</a></li>';
-                            
-                    }
+                        }
+                    
+                    
                 }
             ?>
         </div>
     </section>
-    <?php require("footer.php") ?>
-
+    <?php require("layoutFiles/footer.php") ?>
 
 

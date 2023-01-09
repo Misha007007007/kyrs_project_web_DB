@@ -1,4 +1,5 @@
-<?php require("header.php") ?>
+<?php require("layoutFiles/header.php") ?>
+
                     <li>
                         <a href="index.php">
                             Ice fields
@@ -27,4 +28,4 @@
             </div>
         </div>
     </section>
-    <?php require("footer.php") ?>
+    <?php require("layoutFiles/footer.php") ?>
