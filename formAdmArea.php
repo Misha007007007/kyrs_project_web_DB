@@ -1,10 +1,4 @@
 <?php require("layoutFiles/header.php") ?>
-
-                    <li>
-                        <a href="index.php">
-                            Ice fields
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -17,7 +11,7 @@
             $result = mysqli_query($connect, $query);
         ?>
         <div class="container">
-            <p> Выбери из списка административный округ Москвы и мы подберем для тебя катки в нем. </p>
+            <h3> Выбери из списка административный округ Москвы и мы подберем для тебя катки в нем. </h3>
             <div class="connection" id = "connection">
                 <form action="admArea.php" method="post">
                     <select size="1" style="width: 1000px; " name = "admArea" id = "admArea">

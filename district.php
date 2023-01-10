@@ -8,7 +8,7 @@
     <section id = "about" class="about">
         <div class="container">
             <?php
-                error_reporting(0);
+                // error_reporting(0);
                 $dictrict;
                 $interview = "Район";
                 echo "<h3>Вы выбрали ";

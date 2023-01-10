@@ -9,17 +9,19 @@
             <?php
                 $admArea;
                 $interview = "Округ";
-                error_reporting(0);
-                echo "<h3>Вы выбрали ";
-                if($_POST['admArea'] == ""){
-                    echo $_GET['admArea'];
-                    $admArea = $_GET['admArea'];
+                // error_reporting(0);
+                
+                if(array_key_exists('admArea',$_POST) == false ){
+                    echo "<h2>Ошибка. Неверные данные</h2>";
+                    header('Refresh: 5; index.php');
                 }
                 else{
-                    echo $_POST['admArea'];
+                    echo "<h3>Вы выбрали ";
                     $admArea = $_POST['admArea'];
+                    echo $admArea;
+                    echo "</h3>";
                 }
-                echo "</h3>";
+                
                 include "connectdb.php";
                 
                 

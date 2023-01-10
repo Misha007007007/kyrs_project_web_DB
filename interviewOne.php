@@ -14,14 +14,14 @@
                 <form action="pollHandler.php" method="post">
                     <select size="1" style="width: 1000px; " name = "district" id = "district">
                         <option disabled>Выберети один вариант</option>
-                        <option value="Район не важен" name = "1">Район не важен</option>
+                        <option value="Район не важен" name = "2">Район не важен</option>
                         <?php
                             include "connectdb.php";
                             $query = "SELECT DISTINCT district FROM `field` ORDER BY district";
                             $result = mysqli_query($connect, $query);
                             while($row = mysqli_fetch_assoc($result)){
                         ?>
-                        <option value="<?php echo $row['district']?>" name = "1"><?php echo $row['district']?></option>
+                        <option value="<?php echo $row['district']?>" name = "2"><?php echo $row['district']?></option>
                         <?php }?>    
                                            
                     </select>

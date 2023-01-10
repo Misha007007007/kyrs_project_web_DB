@@ -1,5 +1,9 @@
 <?php require("layoutFiles/header.php") ?>
-
+                    <li>
+                        <a href="interviewOne.php">
+                            Пройти опрос заново
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -19,50 +23,57 @@
                 $hasCashMachine;
                 $hasFirstAidPost;
                 $hasMusic;
-
                 $paid;
                 $seats;
                 
-                if($_POST['district'] == 'Район не важен') $dictrict = "SELECT * FROM `field` WHERE district LIKE '%' ";
-                else $dictrict = "SELECT * FROM `field` WHERE district = \"".$_POST['district']."\" ";  
-                
-                if($_POST['hasEquipmentRental'] == null) $hasEquipmentRental = "AND hasEquipmentRental LIKE '%' ";
-                else $hasEquipmentRental = "AND hasEquipmentRental = 'да' ";
+                if(array_key_exists('incompleteQuery',$_GET) == false){
+                    if($_POST['district'] == 'Район не важен') $dictrict = "SELECT * FROM `field` WHERE district LIKE '%' ";
+                    else $dictrict = "SELECT * FROM `field` WHERE district = \"".$_POST['district']."\" ";  
+                    
+                    if(array_key_exists('hasEquipmentRental',$_POST) == false) $hasEquipmentRental = "AND hasEquipmentRental LIKE '%' ";
+                    else $hasEquipmentRental = "AND hasEquipmentRental = 'да' ";
 
-                if($_POST['hasTechService'] == null) $hasTechService = "AND hasTechService LIKE '%' ";
-                else $hasTechService = "AND hasTechService = 'да' ";
+                    if(array_key_exists('hasTechService',$_POST) == false) $hasTechService = "AND hasTechService LIKE '%' ";
+                    else $hasTechService = "AND hasTechService = 'да' ";
 
-                if($_POST['hasDressingRoom'] == null) $hasDressingRoom = "AND hasDressingRoom LIKE '%' ";
-                else $hasDressingRoom = "AND hasDressingRoom = 'да' ";
+                    if(array_key_exists('hasDressingRoom',$_POST) == false) $hasDressingRoom = "AND hasDressingRoom LIKE '%' ";
+                    else $hasDressingRoom = "AND hasDressingRoom = 'да' ";
 
-                if($_POST['hasEatery'] == null) $hasEatery = "AND hasEatery LIKE '%' ";
-                else $hasEatery = "AND hasEatery = 'да' ";
+                    if(array_key_exists('hasEatery',$_POST) == false) $hasEatery = "AND hasEatery LIKE '%' ";
+                    else $hasEatery = "AND hasEatery = 'да' ";
 
-                if($_POST['hasToilet'] == null) $hasToilet = "AND hasToilet LIKE '%' ";
-                else $hasToilet = "AND hasToilet = 'да' ";
+                    if(array_key_exists('hasToilet',$_POST) == false) $hasToilet = "AND hasToilet LIKE '%' ";
+                    else $hasToilet = "AND hasToilet = 'да' ";
 
-                if($_POST['hasWifi'] == null) $hasWifi = "AND hasWifi LIKE '%' ";
-                else $hasWifi = "AND hasWifi = 'да' ";
+                    if(array_key_exists('hasWifi',$_POST) == false) $hasWifi = "AND hasWifi LIKE '%' ";
+                    else $hasWifi = "AND hasWifi = 'да' ";
 
-                if($_POST['hasCashMachine'] == null) $hasCashMachine = "AND hasCashMachine LIKE '%' ";
-                else $hasCashMachine = "AND hasCashMachine = 'да' ";
+                    if(array_key_exists('hasCashMachine',$_POST) == false) $hasCashMachine = "AND hasCashMachine LIKE '%' ";
+                    else $hasCashMachine = "AND hasCashMachine = 'да' ";
 
-                if($_POST['hasFirstAidPost'] == null) $hasFirstAidPost = "AND hasFirstAidPost LIKE '%' ";
-                else $hasFirstAidPost = "AND hasFirstAidPost = 'да' ";
+                    if(array_key_exists('hasFirstAidPost',$_POST) == false) $hasFirstAidPost = "AND hasFirstAidPost LIKE '%' ";
+                    else $hasFirstAidPost = "AND hasFirstAidPost = 'да' ";
 
-                if($_POST['hasMusic'] == null) $hasMusic = "AND hasMusic LIKE '%' ";
-                else $hasMusic = "AND hasMusic = 'да' ";
+                    if(array_key_exists('hasMusic',$_POST) == false) $hasMusic = "AND hasMusic LIKE '%' ";
+                    else $hasMusic = "AND hasMusic = 'да' ";
 
-                if($_POST['paid'] == null) $paid = "AND paid LIKE '%' ";
-                else $paid = "AND paid = 'бесплатно' ";
+                    if(array_key_exists('paid',$_POST) == false) $paid = "AND paid LIKE '%' ";
+                    else $paid = "AND paid = 'бесплатно' ";
 
-                if($_POST['seats'] == null) $seats = "AND seats >= 0; ";
-                else $seats = "AND seats >= 1; ";
-
-                $query = $dictrict.$hasEquipmentRental.$hasTechService.$hasDressingRoom.$hasEatery.$hasToilet.$hasWifi.$hasCashMachine.$hasFirstAidPost.$hasMusic.$paid.$seats;
-                echo $query;
-                  
-                $result = mysqli_query($connect, $query);
+                    if(array_key_exists('seats',$_POST) == false) $seats = "AND seats >= 0; ";
+                    else $seats = "AND seats >= 1; ";
+                    $incompleteQuery = $hasEquipmentRental.$hasTechService.$hasDressingRoom.$hasEatery.$hasToilet.$hasWifi.$hasCashMachine.$hasFirstAidPost.$hasMusic.$paid.$seats;   
+                    $query = $dictrict.$incompleteQuery; 
+                    $result = mysqli_query($connect, $query);  
+                } 
+                if(array_key_exists('incompleteQuery',$_GET) == true){
+                    if($_GET['dictrict'] == 'Район не важен') $dictrict = "SELECT * FROM `field` WHERE district LIKE '%' ";
+                    else $dictrict = "SELECT * FROM `field` WHERE district = \"".$_GET['dictrict']."\" ";  
+                    
+                    $query = $dictrict.$_GET['incompleteQuery'];
+                    $result = mysqli_query($connect, $query);
+                    // echo  $query;
+                }
                 
                 
                 if(!$result || mysqli_num_rows($result) == 0){
@@ -73,35 +84,14 @@
                 }
                 else{
                     while($entry = mysqli_fetch_assoc($result)){
-                        echo '<h4>' . $entry['objectName'] . '</h4> 
-                            <p>Данное место расположено по адресу: ' . $entry['admArea'] . ', ' . $entry['district'] . ',  ' . $entry['address'] . '.</p>
-                            <p>Для связи используйте: </p>
-                            <ul>';
-                            if ($entry['email'] != null)
-                                echo '<li>Email: ' . $entry['email'] . ' </li>';
-                            else
-                                echo "";
-
-                            if ($entry['webSite'] != null)
-                                echo ' <li>Сайт: <a href=https://' . $entry['webSite'] . '>' . $entry['webSite'] . '<a></li>';
-                            else
-                                echo "";
-
-                            if ($entry['helpPhone'] != null)
-                                echo '<li> Справочный телефон: ' . $entry['helpPhone'] . '</li>';
-                            else
-                                echo "";
-                            
-                            if ($entry['helpPhoneExtension'] != null)
-                                echo '<li>Добавочный номер: ' . $entry['helpPhoneExtension'] . '</li>';
-                            else
-                                echo "";
-                            
-                            echo '
-                            <li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'">Дополнительная информация</a></li>';
+                        require("shortInfo.php");
+                        if(array_key_exists('incompleteQuery',$_GET) == false){   
+                            echo '<li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_POST['district'].'&incompleteQuery='.$incompleteQuery.'">Дополнительная информация</a></li>';
                         }
-                    
-                    
+                        else{
+                            echo '<li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Дополнительная информация</a></li>';
+                        }
+                    }
                 }
             ?>
         </div>

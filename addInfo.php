@@ -1,10 +1,9 @@
 <?php require("layoutFiles/header.php") ?>
                     <li>
                         <?php
-                            if($_GET['page'] == 'Опрос') echo '<a href="pollHandler.php">Назад</a>';
+                            if($_GET['page'] == 'Опрос') echo '<a href="pollHandler.php?dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Назад</a>';
                             else if($_GET['page'] == 'ВсяИнформация') echo '<a href="allInformation.php">Назад</a>';
                             else if($_GET['page'] == 'Район') echo '<a href="district.php?district='.$_GET['district'].'">Назад</a>';
-                            
                             else if($_GET['page'] == 'Округ') echo '<a href="admArea.php?admArea='.$_GET['admArea'].'">Назад</a>';
                             
                         ?>

@@ -12,7 +12,7 @@
 
     <section id = "about" class="about">
         <div class="container">
-            <p> Выбери из списка район Москвы и мы подберем для тебя катки в этом районе. </p>
+            <h3> Выбери из списка район Москвы и мы подберем для тебя катки в этом районе. </h3>
             <div class="connection" id = "connection">
                 <form action="district.php" method="post">
                     <select size="1" style="width: 1000px; " name = "district" id = "district">
