@@ -36,6 +36,11 @@
     font-weight: 700;
     color: #07bbba; 
 }
+.map{
+    width: 500px;
+    height: 500px;
+    background-color: #000;
+}
 
 .fig{
     text-align: center;
@@ -49,7 +54,7 @@
 }
 
 .about h2{
-    color: #ff0000;
+    color: #000;
     text-align: center;
     margin-top: 50px;
     margin-bottom: 35px;
@@ -105,7 +110,8 @@
 
 .about table {
     width: 1000px;
-    margin-left: 25px;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .about table td {
@@ -123,47 +129,28 @@
     /* background: #07bbba; */
     padding: 10px; /* Поля вокруг текста */
 }
-.footer {
-    /* position: absolute; */
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    
-    /* display: flex; */
-    align-items: center;
-    padding-left: 50px;
-    margin-top: -90px;
-    height: 90px;
-    background-color: #000;
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+.container{
+    margin-bottom: 10px;
+}  
 
-.footerTWO {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    
+footer {
     display: flex;
     align-items: center;
     padding-left: 50px;
-    margin-top: -90px;
-    height: 90px;
+    margin-top: auto;
     background-color: #000;
+    height: 90px;
 }
 
 .footer li{
     list-style-type: none;
     color: #fff;
-}
-.footerTWO li{
-    list-style-type: none;
-    color: #fff;
-}
-
-
-
-
-
+} 
 
 .connection{
     

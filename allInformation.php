@@ -28,26 +28,25 @@
             
             <?php
                 
-                $result = mysqli_query($connect, "SELECT * FROM addedPlaces WHERE examination = 1");
+                $resultAddedPlaces = mysqli_query($connect, "SELECT * FROM addedPlaces WHERE examination = 1");
                 
-                if(!$result || mysqli_num_rows($result) == 0){
+                if(!$resultAddedPlaces || mysqli_num_rows($resultAddedPlaces) == 0){
                     echo "Пока здесь нет такой информации.";
                 }
                 else{
-                    $entry = mysqli_fetch_assoc($result);
+                    $entry = mysqli_fetch_assoc($resultAddedPlaces);
                     
-                    while($entry = mysqli_fetch_assoc($result)){
+                    while($entry = mysqli_fetch_assoc($resultAddedPlaces)){
                         // echo $entry['id'];
                         echo '<h4>' . $entry['name'] . '</h4> 
                         <p>Данное место расположено по адресу: ' . $entry['admArea'] . ', ' . $entry['district'] . ',  ' . $entry['address'] . '.</p>
                         <p>Так же пользователь оставил комментарий: </p>
                         <p>' . $entry['comment'] . '</p>
-                        <p>Благодарим <a href="#">' . $entry['user_name'] . '</a> за вклад в развитие проекта.</p>
-                        '; 
+                        <p>Благодарим <a href="#">' . $entry['user_name'] . '</a> за вклад в развитие проекта.</p>'; 
                     }
                 }
             ?>
-            <br><br><br><br><br>
+            
         </div>
     </section>
     <?php require("layoutFiles/footer.php") ?>

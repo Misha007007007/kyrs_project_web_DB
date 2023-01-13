@@ -1,4 +1,4 @@
-<footer id = "footerTWO" class="footerTWO">
+<footer id = "footer" class="footer">
         <div class="container">
             <li>
                 <?php

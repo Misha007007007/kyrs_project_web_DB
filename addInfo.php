@@ -5,9 +5,7 @@
                             else if($_GET['page'] == 'ВсяИнформация') echo '<a href="allInformation.php">Назад</a>';
                             else if($_GET['page'] == 'Район') echo '<a href="district.php?district='.$_GET['district'].'">Назад</a>';
                             else if($_GET['page'] == 'Округ') echo '<a href="admArea.php?admArea='.$_GET['admArea'].'">Назад</a>';
-                            
                         ?>
-
                     </li>
                 </ul>
             </div>
@@ -29,20 +27,49 @@
                     $stmt->close();
 
                     $entry = mysqli_fetch_assoc($result);
-                    
 
                     if(!$result || mysqli_num_rows($result) == 0){
                         echo "Пока здесь нет такой информации.";
                     }
                     else{
                         echo '<h1>' . $entry['objectName'] . '</h1>';
-                        echo '<table border="2">
+                    
+                        echo '<table border = 1>
+                        <tr>
+                            <th>День недели</th>
+                            <th>Часы работы</th>
+                        </tr>';
+                        if ($entry['workingHoursSummer'] != null){
+                            echo '<h3>График работы ';
+                            if($entry['usagePeriodSummer'] != null){
+                                $month = explode("-", $entry['usagePeriodSummer']);
+                                echo '(c '.$month[0].' по '.$month[1].')</h3>';
+                            }
+                            else{
+                                echo'';
+                            }
+                            $schedule = $entry['workingHoursSummer'];
+                            $one = explode("DayOfWeek:", $schedule);
+                            
+                            $i = 0;
+                            while ($i < count($one) - 1) {
+                                $i++;
+                                $two = explode("Hours:", $one[$i]);
+                                $n = 1;
+                                
+                                echo '<tr><th>'.$two[0].'</th>';
+                                echo '<th>' .$two[1]. '</th></tr>';   
+                            }
+                        }
+                        else{
+                            echo "";
+                        }
+                    
+                        echo '<table border="1">
                         <tr>
                             <th>Параметр</th>
                             <th>Комментарий</th>
                         </tr>';
-                        
-                        
                         
                         if ($entry['hasEquipmentRental'] == "да")
                             echo '<tr><th>Присутствует возможность проката оборудования</th>';
@@ -53,8 +80,7 @@
                             echo '<th>' . $entry['equipmentRentalComments'] . '</th></tr>';
                         else
                             echo "<th>Отсутсвует</th></tr>";
-                        
-
+  
                         if ($entry['hasTechService'] == "да")
                             echo '<tr><th>Присутствует сервис технического обслуживания</th>';
                         else
@@ -74,7 +100,7 @@
                             echo '<th>' . $entry['paidComments'] . '</th></tr></table>';
                         else
                             echo "<th>Отсутсвует</th></tr></table>";
-
+                        
                         $yes = '<th>+</th></tr>';
                         $no = '<th>-</th></tr>';
 
@@ -120,8 +146,6 @@
                         else
                             echo $no;
 
-
-
                         echo '<tr><th>Освещение</th>';
                         if ($entry['lighting'] != null)
                             echo '<th>' . $entry['lighting'] . '</th></tr>';
@@ -140,22 +164,25 @@
                         else
                             echo '<th>-</th></tr></table>';
                         
-                        
-                        
                         if ($entry['nameSummer'] != null)
                             echo ' <h3>Информация о ледовом поле во время летнего периода</h3>
-                            <h4>Название спортивной зоны в летний период ' . $entry['nameSummer'] . '</h4>';
+                            <h4>Название спортивной зоны в летний период - " ' . $entry['nameSummer'] . ' "</h4>';
                         else
                             echo '<h3>Информация о ледовом поле во время летнего периода</h3>';
+
+                        if ($entry['surfaceTypeSummer'] != null)
+                            echo ' <h4>Во время летнего периода покрытием на площадке является ' . $entry['surfaceTypeSummer'] . '.</h4>';
+                        else
+                            echo '';
+
+                        if ($entry['servicesSummer'] != null)
+                            echo ' <h4>Так же оказываются такие услуги, как: ' . $entry['servicesSummer'] . '.</h4>';
+                        else
+                            echo ''; 
+
                         
-                    
-
-
-                    
                     }
                 ?>
-                
-                <br><br><br><br><br>
             </div> 
         </div>
     </section>
