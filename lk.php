@@ -49,6 +49,7 @@
                     }
                 }
            ?>
+           
         </div>
     </section>
     <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>

@@ -12,8 +12,10 @@
                 // error_reporting(0);
                 
                 if(array_key_exists('admArea',$_POST) == false ){
-                    echo "<h2>Ошибка. Неверные данные</h2>";
-                    header('Refresh: 5; index.php');
+                    echo "<h3>Вы выбрали ";
+                    echo $_GET['admArea'];
+                    $admArea = $_GET['admArea'];
+                    echo "</h3>";
                 }
                 else{
                     echo "<h3>Вы выбрали ";

@@ -6,7 +6,7 @@
         </div>
     </header>
 <?php
-    $_SESSION["user"] = null;
+    session_abort();
 ?>
     <section id = "about" class="about">
         <div class="connection" id = "connection">

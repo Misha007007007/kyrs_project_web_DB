@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+<?php require("layoutFiles/header.php") ?>
                 </ul>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 require("connectdb.php");
                 $stmt = $connect->prepare("SELECT * FROM `rating` WHERE `address` = ?");
                 $stmt->bind_param("s", $_POST['address']);
-                echo $_POST['address'];
+                // echo $_POST['address'];
                 
                 $resultOne = $stmt->execute();
                 $resultOne = mysqli_stmt_get_result($stmt);
@@ -44,4 +44,4 @@
              }
         ?>
     </section>
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+<?php require("layoutFiles/footer.php") ?>

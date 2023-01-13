@@ -1,10 +1,18 @@
 <?php require("layoutFiles/header.php") ?>
                     <li>
                         <?php
-                            if($_GET['page'] == 'Опрос') echo '<a href="pollHandler.php?dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Назад</a>';
-                            else if($_GET['page'] == 'ВсяИнформация') echo '<a href="allInformation.php">Назад</a>';
-                            else if($_GET['page'] == 'Район') echo '<a href="district.php?district='.$_GET['district'].'">Назад</a>';
-                            else if($_GET['page'] == 'Округ') echo '<a href="admArea.php?admArea='.$_GET['admArea'].'">Назад</a>';
+                            require("session.php");
+                            if (!$session_user){
+                                if($_GET['page'] == 'Опрос') echo '<a href="pollHandler.php?dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Назад</a>';
+                                else if($_GET['page'] == 'ВсяИнформация') echo '<a href="allInformation.php">Назад</a>';
+                                else if($_GET['page'] == 'Район') echo '<a href="district.php?district='.$_GET['district'].'">Назад</a>';
+                                else if($_GET['page'] == 'Округ') echo '<a href="admArea.php?admArea='.$_GET['admArea'].'">Назад</a>';
+                                
+                            }
+                            else{
+                                echo '<a href="allInformation.php">Все записи</a>';
+                            }
+                            
                         ?>
                     </li>
                 </ul>
@@ -18,6 +26,7 @@
                 <h1></h1>
                 <?php
                     require("connectdb.php");
+                    
                     
                     $stmt = $connect->prepare("SELECT * FROM field WHERE id = ?");
                     $stmt->bind_param("s", $_GET['id']);
@@ -64,7 +73,23 @@
                         else{
                             echo "";
                         }
-                    
+
+                        $stmt = $connect->prepare("SELECT * FROM rating WHERE address = ?");
+                        $stmt->bind_param("s", $entry['address']);
+    
+                        $resultRating = $stmt->execute();
+                        $resultRating = mysqli_stmt_get_result($stmt);
+                        $stmt->close();
+    
+                        $entryRating = mysqli_fetch_assoc($resultRating);
+                        if(!$resultRating || mysqli_num_rows($resultRating) == 0){
+                            echo "<h4>Пока не один пользователь не оценил данное место.</h4>";
+                        }
+                        else{
+                            $averageResult = $entryRating['sum'] / $entryRating['number'];
+                            echo "<h4>Рейтинг, определенный оценками пользоваетлей: $averageResult из 5 </h4>";
+                        }
+
                         echo '<table border="1">
                         <tr>
                             <th>Параметр</th>
@@ -166,7 +191,7 @@
                         
                         if ($entry['nameSummer'] != null)
                             echo ' <h3>Информация о ледовом поле во время летнего периода</h3>
-                            <h4>Название спортивной зоны в летний период - " ' . $entry['nameSummer'] . ' "</h4>';
+                            <h4>Название спортивной зоны в летний период - " ' . $entry['nameSummer'] . '"</h4>';
                         else
                             echo '<h3>Информация о ледовом поле во время летнего периода</h3>';
 
@@ -178,11 +203,58 @@
                         if ($entry['servicesSummer'] != null)
                             echo ' <h4>Так же оказываются такие услуги, как: ' . $entry['servicesSummer'] . '.</h4>';
                         else
-                            echo ''; 
+                            echo '';  
+                        
+                        // комментарии 
+                        $stmt = $connect->prepare("SELECT * FROM comments WHERE id_field = ?");
+                        $stmt->bind_param("i", $entry['id']);
+    
+                        $resultComment = $stmt->execute();
+                        $resultComment = mysqli_stmt_get_result($stmt);
+                        
+                        $stmt->close();
+    
+                        echo ' <h1>Комментарии наших пользователей</h1>';
+                        if(!$resultComment || mysqli_num_rows($resultComment) == 0){
+                            echo "<h4>Пока никто не написал комментарий</h4>";
+                        }
+                        else{
+                            while($comments = mysqli_fetch_assoc($resultComment)){
+                                
+                                if(!$session_user){
+                                    echo '<div class="comment"> '.$comments['comment'].' </div>';
+                                }
+                                else{
+                                    
+                                    if($session_user['role'] == 1 || $session_user['role'] == 2)
+                                        echo '<div class="comment"> '.$comments['comment'].'<br><a href="deleteComment.php?id='.$comments['id'].'&id_field='.$entry['id'].'&page='.$_GET['page'].'"> Удалить </a></div>';    
+                                    else
+                                        echo '';
+                                }
+                            }
+                        }
+
+                        // форма для добавления комментов
+                        if($_GET['page'] == 'Опрос') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'';
+                        else if($_GET['page'] == 'ВсяИнформация') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
+                        else if($_GET['page'] == 'Район') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
+                        else if($_GET['page'] == 'Округ') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
+                        else  $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
+                        
+                        
+                        echo '<div class="commentAdd">
+                                <form action="'.$parametrs.'" method="POST">
+                                    <textarea name="comment" id="text" cols="61" rows="2" ></textarea><br>
+                                    <input type="submit" value="Добавить комментарий">
+                                </form>
+                            </div>';
+                       
 
                         
                     }
                 ?>
+                
+                
             </div> 
         </div>
     </section>
