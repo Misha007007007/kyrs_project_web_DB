@@ -9,12 +9,7 @@
             </div>
         </div>
     </header>
-<!-- 
-    SELECT district
-    FROM `field`
-GROUP BY district
-ORDER BY count(*) DESC
-   LIMIT 3; -->
+
     <section id = "about" class="about">
         <div class="container">
             
@@ -60,7 +55,7 @@ ORDER BY count(*) DESC
                 </li>
                 <br>
                 <li>
-                    <a href="#">Оценить ледовое поле</a>
+                    <a href="formRaiting.php">Оценить ледовое поле</a>
                 </li>
                 <br>
             </ul></p>

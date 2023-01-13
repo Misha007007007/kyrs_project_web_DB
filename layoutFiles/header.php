@@ -16,7 +16,7 @@
             <div class="nav">
                 <ul class = "menu">
                     <li>
-                        <a href="index.php">
+                        <a href="http://localhost:3000/index.php">
                             Ice fields
                         </a>
                     </li>

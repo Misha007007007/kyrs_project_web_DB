@@ -22,9 +22,7 @@
                     echo "</h3>";
                 }
                 
-                include "connectdb.php";
-                
-                
+                require("connectdb.php");
                 
                 $stmt = $connect->prepare("SELECT * FROM `field` WHERE admArea = ?");
                 $stmt->bind_param("s", $admArea);

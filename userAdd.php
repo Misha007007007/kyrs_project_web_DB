@@ -6,6 +6,7 @@
 <section id = "about" class="about">
     <div class="container">
         <?php
+        
         require("connectdb.php");
         require("session.php");
         $examination = 2;

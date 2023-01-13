@@ -16,7 +16,7 @@
                         <option disabled>Выберети один вариант</option>
                         <option value="Район не важен" name = "2">Район не важен</option>
                         <?php
-                            include "connectdb.php";
+                            require("connectdb.php");
                             $query = "SELECT DISTINCT district FROM `field` ORDER BY district";
                             $result = mysqli_query($connect, $query);
                             while($row = mysqli_fetch_assoc($result)){

@@ -12,7 +12,8 @@
                 $dictrict;
                 $interview = "Район";
                 echo "<h3>Вы выбрали ";
-                if($_POST['district'] == ""){
+                
+                if(array_key_exists('district',$_POST) == false){
                     echo $_GET['district'];
                     $dictrict = $_GET['district'];
                 }
@@ -22,7 +23,7 @@
                 }
                 echo "</h3>";
                 
-                include "connectdb.php";
+                require("connectdb.php");
                 
                 
                 $stmt = $connect->prepare("SELECT * FROM `field` WHERE district = ?");

@@ -12,7 +12,7 @@
     <section id = "about" class="about">
         <div class="container">
             <?php
-                include "connectdb.php";
+                require("connectdb.php");
                 $interview = "Опрос";
                 $hasEquipmentRental;
                 $hasTechService;

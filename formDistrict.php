@@ -18,7 +18,7 @@
                     <select size="1" style="width: 1000px; " name = "district" id = "district">
                         <option disabled>Выберети один вариант</option>
                         <?php
-                            include "connectdb.php";
+                            require("connectdb.php");
                             $query = "SELECT DISTINCT district FROM `field` ORDER BY district";
                             $result = mysqli_query($connect, $query);
                             while($row = mysqli_fetch_assoc($result)){

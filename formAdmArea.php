@@ -6,7 +6,7 @@
 
     <section id = "about" class="about">
         <?php
-            include "connectdb.php";
+            require("connectdb.php");
             $query = "SELECT DISTINCT admArea FROM `field` ORDER BY admArea";
             $result = mysqli_query($connect, $query);
         ?>
