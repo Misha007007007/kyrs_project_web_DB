@@ -7,7 +7,6 @@
                                 else if($_GET['page'] == 'ВсяИнформация') echo '<a href="allInformation.php">Назад</a>';
                                 else if($_GET['page'] == 'Район') echo '<a href="district.php?district='.$_GET['district'].'">Назад</a>';
                                 else if($_GET['page'] == 'Округ') echo '<a href="admArea.php?admArea='.$_GET['admArea'].'">Назад</a>';
-                                
                             }
                             else{
                                 echo '<a href="allInformation.php">Все записи</a>';
@@ -26,8 +25,7 @@
                 <h1></h1>
                 <?php
                     require("connectdb.php");
-                    
-                    
+
                     $stmt = $connect->prepare("SELECT * FROM field WHERE id = ?");
                     $stmt->bind_param("s", $_GET['id']);
 
@@ -38,7 +36,7 @@
                     $entry = mysqli_fetch_assoc($result);
 
                     if(!$result || mysqli_num_rows($result) == 0){
-                        echo "Пока здесь нет такой информации.";
+                        echo "<h2>Пока здесь нет такой информации.</h2>";
                     }
                     else{
                         echo '<h1>' . $entry['objectName'] . '</h1>';
@@ -72,7 +70,14 @@
                         }
                         else{
                             echo "";
-                        }
+                        } 
+                        $latitude = $entry['latitude'];;
+                        $longitude = $entry['longitude'];;
+                        if($_GET['page'] == 'Опрос') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
+                        else if($_GET['page'] == 'ВсяИнформация') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'">Посмотреть местоположение на карте</a></div>';
+                        else if($_GET['page'] == 'Район') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'">Посмотреть местоположение на карте</a></div>';
+                        else if($_GET['page'] == 'Округ') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'">Посмотреть местоположение на карте</a></div>';
+                        else  echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page=ВсяИнформация.">Посмотреть местоположение на карте</a></div>';
 
                         $stmt = $connect->prepare("SELECT * FROM rating WHERE address = ?");
                         $stmt->bind_param("s", $entry['address']);
@@ -233,27 +238,22 @@
                                 }
                             }
                         }
-
+                        
                         // форма для добавления комментов
-                        if($_GET['page'] == 'Опрос') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'';
+                        if($_GET['page'] == 'Опрос') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
                         else if($_GET['page'] == 'ВсяИнформация') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
                         else if($_GET['page'] == 'Район') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
                         else if($_GET['page'] == 'Округ') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
                         else  $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
-                        
-                        
+
                         echo '<div class="commentAdd">
                                 <form action="'.$parametrs.'" method="POST">
                                     <textarea name="comment" id="text" cols="61" rows="2" placeholder="Комментарий"></textarea>
                                     <input type="submit" value="Добавить комментарий">
                                 </form>
-                            </div>';
-                       
-
-                        
+                            </div>';   
                     }
                 ?>
-                
                 
             </div> 
         </div>
