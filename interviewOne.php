@@ -12,7 +12,7 @@
             <h3> Возможно, Вам не подходит ни один пункт. В таком случае, оставьте поля пустыми. </h3>
             <div class="connection" id = "connection">
                 <form action="pollHandler.php" method="post">
-                    <select size="1" style="width: 1000px; " name = "district" id = "district">
+                    <select size="1" style="width: 300px; " name = "district" id = "district">
                         <option disabled>Выберети один вариант</option>
                         <option value="Район не важен" name = "2">Район не важен</option>
                         <?php
@@ -23,14 +23,14 @@
                         ?>
                         <option value="<?php echo $row['district']?>" name = "2"><?php echo $row['district']?></option>
                         <?php }?>    
-                                           
+                                      
                     </select>
                    
                     <div class="check">
                         <!-- если отмечено - on
                         если не отмечено - null -->
                         <fieldset>   
-                            <input type="checkbox" name="hasEquipmentRental" id="hasEquipmentRental" value="да"> Прокат оборудования<br>
+                            <input type="checkbox" name="hasEquipmentRental" id="hasEquipmentRental" value="да"> Прокат оборудования <br>
                             <input type="checkbox" name="hasTechService" id="hasTechService" value="да">  Сервис технического обслуживания <br>
                             <input type="checkbox" name="hasDressingRoom" id="hasDressingRoom" value="да"> Наличие раздевалки <br>
                             <input type="checkbox" name="hasEatery" id="hasEatery" value="да"> Наличие точки питания <br>

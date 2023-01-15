@@ -24,7 +24,7 @@
                 else if($_GET['page'] == 'Район') $parametrs = '<a href="addInfo.php?id='.$id.'&page='.$page.'&district='.$_GET['district'].'">НАЗАД</a>';
                 else if($_GET['page'] == 'Округ') $parametrs = '<a href="addInfo.php?id='.$id.'&page='.$page.'&admArea='.$_GET['admArea'].'">НАЗАД</a>';
                 
-                echo $parametrs;
+                echo "<h2>$parametrs</h2>";
              }
         ?>
         

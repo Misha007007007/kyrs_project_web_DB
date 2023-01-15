@@ -21,21 +21,23 @@
                         <?php }?>
                     </select>
                     <br><br>
-                    <input type="radio" id="1" name="grade" value="1">
-                    <label for="1">1</label>
-                
-                    <input type="radio" id="2" name="grade" value="2">
-                    <label for="2">2 </label>
-                
-                    <input type="radio" id="3" name="grade" value="3">
-                    <label for="4">3</label>
+                    <div class="radioBut">
+                        <input type="radio" id="1" name="grade" value="1">
+                        <label for="1">1</label>
+                    
+                        <input type="radio" id="2" name="grade" value="2">
+                        <label for="2">2 </label>
+                    
+                        <input type="radio" id="3" name="grade" value="3">
+                        <label for="4">3</label>
 
-                    <input type="radio" id="4" name="grade" value="4">
-                    <label for="4">4</label>
+                        <input type="radio" id="4" name="grade" value="4">
+                        <label for="4">4</label>
 
-                    <input type="radio" id="5" name="grade" value="5">
-                    <label for="5">5</label>
-                    <br><br>
+                        <input type="radio" id="5" name="grade" value="5">
+                        <label for="5">5</label>
+                    </div>
+                    
                     <input type="submit" value="Оценить">
                 </form>
             </div>

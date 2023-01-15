@@ -17,7 +17,7 @@
                     <input type="text" maxlength="50" size="70" name="admArea" placeholder="Административный округ"><br>
                     <input type="text" maxlength="50" size="70" name="district" placeholder="Район"><br>
                     <input type="text" maxlength="50" size="70" name="address" placeholder="Адрес"><br>
-                    <textarea name="comment" id="text" cols="61" rows="10" placeholder="Комментарий"></textarea><br>
+                    <textarea name="comment" id="text" cols="61" rows="10" placeholder="Комментарий"></textarea>
                     <input type="submit" value="Добавить">
                 </form>
             </div>

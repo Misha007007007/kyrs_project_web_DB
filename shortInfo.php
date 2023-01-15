@@ -24,9 +24,7 @@ else
     echo "";
 
 if ($entry['helpPhoneExtension'] != null)
-    echo '<li>Добавочный номер: ' . $entry['helpPhoneExtension'] . '</li>';
+    echo '<li>Добавочный номер: ' . $entry['helpPhoneExtension'] . '</li></ul>';
 else
     echo "";
-
-
 ?>

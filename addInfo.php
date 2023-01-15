@@ -244,7 +244,7 @@
                         
                         echo '<div class="commentAdd">
                                 <form action="'.$parametrs.'" method="POST">
-                                    <textarea name="comment" id="text" cols="61" rows="2" ></textarea><br>
+                                    <textarea name="comment" id="text" cols="61" rows="2" placeholder="Комментарий"></textarea>
                                     <input type="submit" value="Добавить комментарий">
                                 </form>
                             </div>';

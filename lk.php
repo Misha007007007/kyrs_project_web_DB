@@ -35,13 +35,13 @@
                         echo '
                         <div class="validation" id = "validation">
                             <form action="adminAdd.php?id='.$entry['id'].'" method="post">
-                                <textarea name="user_name" id="text" cols="61" rows="2" >' . $entry['user_name'] . '</textarea>
-                                <textarea name="name" id="text" cols="61" rows="2" >' . $entry['name'] . '</textarea>
-                                <textarea name="admArea" id="text" cols="61" rows="2" >' . $entry['admArea'] . '</textarea>
-                                <textarea name="district" id="text" cols="61" rows="2" >' . $entry['district'] . '</textarea>
+                                <textarea name="user_name" id="text" cols="61" rows="2" >' . $entry['user_name'] . '</textarea><br>
+                                <textarea name="name" id="text" cols="61" rows="2" >' . $entry['name'] . '</textarea><br>
+                                <textarea name="admArea" id="text" cols="61" rows="2" >' . $entry['admArea'] . '</textarea><br>
+                                <textarea name="district" id="text" cols="61" rows="2" >' . $entry['district'] . '</textarea><br>
                                 <textarea name="address" id="text" cols="61" rows="2" >' . $entry['address'] . '</textarea><br>
-                                <textarea name="comment" id="text" cols="61" rows="2" >' . $entry['comment'] . '</textarea><br>
-                                <input type="submit" value="Добавить">
+                                <textarea name="comment" id="text" cols="61" rows="2" >' . $entry['comment'] . '</textarea>
+                                <input type="submit" value="Добавить"><br>
                                 <a href="adminDelete.php?id='.$entry['id'].'">Удалить</a>
                             </form>    
                                    
