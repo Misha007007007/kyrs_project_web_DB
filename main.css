@@ -153,17 +153,20 @@ body {
 }  
 
 footer {
+    color: #fff;
     display: flex;
     align-items: center;
     padding-left: 50px;
     margin-top: auto;
     background-color: #000;
     height: 90px;
+    text-align: center;
 }
 
-.footer li{
-    list-style-type: none;
+.footer p{
+    
     color: #fff;
+    text-align: center;
 } 
 
 input[type=text], input[type=password], select, textarea{
@@ -227,6 +230,7 @@ input[type=submit] {
 
 .container {
     border-radius: 5px;
+    text-align: center;
 }
 
 .validation a{

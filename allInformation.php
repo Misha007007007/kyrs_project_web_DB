@@ -30,7 +30,7 @@
                 
                 $resultAddedPlaces = mysqli_query($connect, "SELECT * FROM addedPlaces WHERE examination = 1");
                 
-                if(!$resultAddedPlaces || mysqli_num_rows($resultAddedPlaces) == 0){
+                if(mysqli_num_rows($resultAddedPlaces) == 0){
                     echo "Пока здесь нет такой информации.";
                 }
                 else{

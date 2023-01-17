@@ -74,13 +74,13 @@
                         $latitude = $entry['latitude'];;
                         $longitude = $entry['longitude'];;
                         if($_GET['page'] == 'Опрос') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
-                        else if($_GET['page'] == 'ВсяИнформация') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'">Посмотреть местоположение на карте</a></div>';
-                        else if($_GET['page'] == 'Район') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'">Посмотреть местоположение на карте</a></div>';
-                        else if($_GET['page'] == 'Округ') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'">Посмотреть местоположение на карте</a></div>';
-                        else  echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page=ВсяИнформация.">Посмотреть местоположение на карте</a></div>';
+                        else if($_GET['page'] == 'ВсяИнформация') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
+                        else if($_GET['page'] == 'Район') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
+                        else if($_GET['page'] == 'Округ') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
+                        else  echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page=ВсяИнформация.&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
 
-                        $stmt = $connect->prepare("SELECT * FROM rating WHERE address = ?");
-                        $stmt->bind_param("s", $entry['address']);
+                        $stmt = $connect->prepare("SELECT * FROM rating WHERE id_field = ?");
+                        $stmt->bind_param("s", $entry['id']);
     
                         $resultRating = $stmt->execute();
                         $resultRating = mysqli_stmt_get_result($stmt);
@@ -209,7 +209,34 @@
                             echo ' <h4>Так же оказываются такие услуги, как: ' . $entry['servicesSummer'] . '.</h4>';
                         else
                             echo '';  
-                        
+
+                        if($_GET['page'] == 'Опрос') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
+                        else if($_GET['page'] == 'ВсяИнформация') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
+                        else if($_GET['page'] == 'Район') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
+                        else if($_GET['page'] == 'Округ') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
+                        else  $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
+
+                        echo '<div class="mark">
+                            <form action="'.$parametrsMark.'" method="post">
+                                <div class="radioBut">
+                                    <input type="radio" id="1" name="grade" value="1">
+                                    <label for="1">1</label>
+                                
+                                    <input type="radio" id="2" name="grade" value="2">
+                                    <label for="2">2 </label>
+                                
+                                    <input type="radio" id="3" name="grade" value="3">
+                                    <label for="4">3</label>
+            
+                                    <input type="radio" id="4" name="grade" value="4">
+                                    <label for="4">4</label>
+            
+                                    <input type="radio" id="5" name="grade" value="5">
+                                    <label for="5">5</label>
+                                </div>
+                                <input type="submit" value="Оценить">
+                                </div>
+                            </form>';
                         // комментарии 
                         $stmt = $connect->prepare("SELECT * FROM comments WHERE id_field = ?");
                         $stmt->bind_param("i", $entry['id']);
@@ -218,6 +245,8 @@
                         $resultComment = mysqli_stmt_get_result($stmt);
                         
                         $stmt->close();
+
+                        
     
                         echo ' <h1>Комментарии наших пользователей</h1>';
                         if(!$resultComment || mysqli_num_rows($resultComment) == 0){

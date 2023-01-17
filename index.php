@@ -59,10 +59,6 @@
                     <a href="create.php">Добавить запись</a>
                 </li>
                 <br>
-                <li>
-                    <a href="formRaiting.php">Оценить ледовое поле</a>
-                </li>
-                <br>
             </ul></p>
             
         </div>
