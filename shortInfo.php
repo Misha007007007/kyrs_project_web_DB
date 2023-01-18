@@ -1,6 +1,6 @@
 <?php
 
-echo "<br>";
+echo '<br><div class="links">';
 echo '<h4>' . $entry['objectName'] . '</h4> 
 <p>Данное место расположено по адресу: ' . $entry['admArea'] . ', ' . $entry['district'] . ',  ' . $entry['address'] . '.</p>
 <p>Для связи используйте: </p>
@@ -27,4 +27,5 @@ if ($entry['helpPhoneExtension'] != null)
     echo '<li>Добавочный номер: ' . $entry['helpPhoneExtension'] . '</li></ul>';
 else
     echo "";
+echo '</div>'
 ?>

@@ -49,6 +49,12 @@
     color: #07bbba;
 }
 
+.links a:hover, .mapLink a:hover, .linkRating a:hover, .commentLink a:hover, .interviewLink a:hover{
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
 .functionList li a:hover{
     font-size: 20px;
     font-weight: 700;
@@ -245,7 +251,16 @@ input[type=submit] {
     margin-right: auto;
     
 }
-
+a{
+    text-decoration: none;
+    
+    color: black;
+   
+    
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
 .comment a{
     text-decoration: none;
     text-transform: uppercase;

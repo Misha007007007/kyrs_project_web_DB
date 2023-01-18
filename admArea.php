@@ -36,7 +36,7 @@
                 //$row = mysqli_fetch_row($result);
                 while($entry = mysqli_fetch_assoc($result)){
                     require("shortInfo.php");
-                    echo ' <li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&admArea='.$admArea.'">Дополнительная информация</a></li></ul>';
+                    echo '<div class="links">  <li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&admArea='.$admArea.'">Дополнительная информация</a></li></ul></div>';
                 }
             ?>
         </div>

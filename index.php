@@ -4,11 +4,11 @@
                         require("session.php");
                         require("connectdb.php");
                         if (!$session_user){
-                             echo '<li><a href="authorization.php">Личный кабинет</a></li>';
+                             echo '<li><a href="http://localhost:3000/authorization.php">Личный кабинет</a></li>';
                         }
                         else{
                             if ($session_user['role'] == 3) echo '<li><a href="#">Пользователь: '.$session_user['login'].'</a></li> <li><a href="exit.php">Выход</a></li>';
-                            else echo '<li><a href="lk.php">Личный кабинет</a></li> <li><a href="exit.php">Выход</a></li>';
+                            else echo '<li><a href="lk.php">Личный кабинет администратора</a></li> <li><a href="exit.php">Выход</a></li>';
                         }
                     ?>  
                 </ul>

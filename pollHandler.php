@@ -86,10 +86,10 @@
                     while($entry = mysqli_fetch_assoc($result)){
                         require("shortInfo.php");
                         if(array_key_exists('incompleteQuery',$_GET) == false){   
-                            echo '<li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_POST['district'].'&incompleteQuery='.$incompleteQuery.'">Дополнительная информация</a></li>';
+                            echo '<div class="interviewLink"><li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_POST['district'].'&incompleteQuery='.$incompleteQuery.'">Дополнительная информация</a></li></div>';
                         }
                         else{
-                            echo '<li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Дополнительная информация</a></li>';
+                            echo '<div class="interviewLink"><li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Дополнительная информация</a></li>';
                         }
                     }
                 }

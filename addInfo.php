@@ -35,7 +35,7 @@
                     else{
                         echo '<h1>' . $entry['objectName'] . '</h1>';
                     
-                        echo '<table border = 1>
+                        echo '<table border = 0>
                         <tr>
                             <th>День недели</th>
                             <th>Часы работы</th>
@@ -58,20 +58,20 @@
                                 $two = explode("Hours:", $one[$i]);
                                 $n = 1;
                                 
-                                echo '<tr><th>'.$two[0].'</th>';
-                                echo '<th>' .$two[1]. '</th></tr>';   
+                                echo '<tr><th>'.$two[0].'  </th>';
+                                echo '<th>' .$two[1]. '  </th></tr>';   
                             }
                         }
                         else{
                             echo "";
                         } 
-                        $latitude = $entry['latitude'];;
-                        $longitude = $entry['longitude'];;
-                        if($_GET['page'] == 'Опрос') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
-                        else if($_GET['page'] == 'ВсяИнформация') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
-                        else if($_GET['page'] == 'Район') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
-                        else if($_GET['page'] == 'Округ') echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
-                        else  echo '<div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page=ВсяИнформация.&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div>';
+                        $latitude = $entry['latitude'];
+                        $longitude = $entry['longitude'];
+                        if($_GET['page'] == 'Опрос') echo '<h3><div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
+                        else if($_GET['page'] == 'ВсяИнформация') echo '<h3><div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
+                        else if($_GET['page'] == 'Район') echo '<h3><div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
+                        else if($_GET['page'] == 'Округ') echo '<h3><div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
+                        else  echo '<h3><div class="mapLink"><a href="map.html?id_field='.$entry['id'].'&page=ВсяИнформация.&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
 
                         $stmt = $connect->prepare("SELECT * FROM rating WHERE id_field = ?");
                         $stmt->bind_param("s", $entry['id']);

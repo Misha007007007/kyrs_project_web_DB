@@ -36,16 +36,17 @@
                     $resultr = $stmt->execute();
                     echo "<h2>Спасибо за оценку!</h2>";
                 }
+                if($_GET['page'] == 'Опрос') $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
+                else if($_GET['page'] == 'ВсяИнформация') $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page='.$_GET['page'].'';
+                else if($_GET['page'] == 'Район') $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
+                else if($_GET['page'] == 'Округ') $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
+                else  $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page=ВсяИнформация';
+
+                echo '<div class="linkRating"><h2><a href="'.$parametrsMark.'"> Вернуться назад </a></h2></div>';
+                echo '<div class="linkRating"><h2><a href="index.php"> Перейти на главную </a></h2></div>';
                 
             }
-            if($_GET['page'] == 'Опрос') $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
-            else if($_GET['page'] == 'ВсяИнформация') $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page='.$_GET['page'].'';
-            else if($_GET['page'] == 'Район') $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
-            else if($_GET['page'] == 'Округ') $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
-            else  $parametrsMark = 'addInfo.php?id='.$_GET['id_field'].'&page=ВсяИнформация';
-
-            echo '<a href="'.$parametrsMark.'"> Вернуться назад </a>';
-            echo '<a href="index.php"> Перейти на главную </a>';
+            
         ?>
     </section>
 <?php require("layoutFiles/footer.php") ?>
