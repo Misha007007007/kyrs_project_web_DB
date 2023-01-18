@@ -1,4 +1,4 @@
-<?php require("layoutFiles/header.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
 
                 </ul>
             </div>
@@ -23,4 +23,4 @@
             </div>
         </div>
     </section>
-    <?php require("layoutFiles/footer.php") ?>
+    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
