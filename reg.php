@@ -8,9 +8,12 @@
         <?php
             require("connectdb.php");
             require("session.php");
+            echo $_POST['login'];
+            echo $_POST['password'];
+            echo $_GET['type'];
 
-            $role = 2;
-            if (!empty($_POST)){
+            
+            if (array_key_exists('login',$_POST) == true && array_key_exists("password",$_POST) == true && array_key_exists('type',$_GET) == true){
                 $stmt = $connect->prepare("SELECT * FROM user WHERE login = ?");
                 $stmt->bind_param("s", $_POST["login"]);
 
@@ -19,7 +22,11 @@
                 $stmt->close();
                 
                 //echo mysqli_num_rows($result);
+                
                 if(mysqli_num_rows($result) == 0){
+                    if ($_GET['type'] == 2) $role = 2;
+                    else $role = 3;
+
                     $pass = md5($_POST["password"]);
                     $stmt = $connect->prepare("INSERT user (login, password_hash, role) VALUES (?, ?, ?)");
                     $stmt->bind_param("ssi", $_POST["login"], $pass, $role);
@@ -29,15 +36,40 @@
                     $stmt->close();
 
                     
-                    // header("Location: menu.php");
-                    echo "<h2>Вы зарегистрировали нового пользователя</h2>";
-                    header('Refresh: 3; lk.php');
+                    
+                    if ($_GET['type'] == 2){
+                        echo "<h2>Вы зарегистрировали нового пользователя</h2>"; 
+                        header('Refresh: 3; lk.php');
+                    } 
+                    else {
+                        echo "<h2>Вы зарегистрированы</h2>";
+                        header('Refresh: 3; index.php');
+                    }
+                    
                 }
                 else{
-                    echo "<h2>Невозможно зарегистировать пользователя с таким логином.</h2>";
-                    header('Refresh: 3; lk.php');
+                    if ($_GET['type'] == 2){
+                        echo "<h2>Невозможно зарегистировать пользователя с таким логином</h2>"; 
+                        header('Refresh: 3; regUser.php');
+                    } 
+                    else {
+                        echo "<h2>Невозможно зарегистировать пользователя с таким логином</h2>";
+                        header('Refresh: 3; regUser.php?type=3');
+                    }
+                    
                 }
                 //$id = mysqli_insert_id($connect);
+                
+            }
+            else {
+                if ($_GET['type'] == 2){
+                    echo "<h2>Заполните все поля.</h2>";
+                    header('Refresh: 3; regUser.php');
+                } 
+                else {
+                    echo "<h2>Заполните все поля.</h2>";
+                    header('Refresh: 3; regUser.php?type=3');
+                }
                 
             }
         ?> 

@@ -1,10 +1,16 @@
 <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
 
-                    <li>
-                        <a href="authorization.php">
-                            Личный кабинет
-                        </a>
-                    </li>
+                    <?php 
+                        require("session.php");
+                        require("connectdb.php");
+                        if (!$session_user){
+                             echo '<li><a href="authorization.php">Личный кабинет</a></li>';
+                        }
+                        else{
+                            if ($session_user['role'] == 3) echo '<li><a href="#">Пользователь: '.$session_user['login'].'</a></li> <li><a href="exit.php">Выход</a></li>';
+                            else echo '<li><a href="lk.php">Личный кабинет</a></li> <li><a href="exit.php">Выход</a></li>';
+                        }
+                    ?>  
                 </ul>
             </div>
         </div>
@@ -15,8 +21,7 @@
             
             <h3> Привет, здесь собрано большинство мест Москвы, где ты можешь покататься на коньках и отдохнуть.</h3>
             <?php
-                require("session.php");
-                require("connectdb.php");
+                
                 $stmt = $connect->prepare("SELECT COUNT(`id`) FROM field");
                 $resultCountField = $stmt->execute();
                 $resultCountField = mysqli_stmt_get_result($stmt);
@@ -55,10 +60,10 @@
                     <a href="interviewOne.php">Опрос для подбора ледового поля</a>
                 </li>
                 <br>
-                <li>
-                    <a href="create.php">Добавить запись</a>
-                </li>
-                <br>
+                <?php
+                if (!$session_user) echo '';
+                else echo '<li><a href="create.php">Добавить запись</a></li><br>';
+                ?>
             </ul></p>
             
         </div>

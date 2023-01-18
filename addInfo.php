@@ -2,16 +2,10 @@
                     <li>
                         <?php
                             require("session.php");
-                            if (!$session_user){
-                                if($_GET['page'] == 'Опрос') echo '<a href="pollHandler.php?dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Назад</a>';
-                                else if($_GET['page'] == 'ВсяИнформация') echo '<a href="allInformation.php">Назад</a>';
-                                else if($_GET['page'] == 'Район') echo '<a href="district.php?district='.$_GET['district'].'">Назад</a>';
-                                else if($_GET['page'] == 'Округ') echo '<a href="admArea.php?admArea='.$_GET['admArea'].'">Назад</a>';
-                            }
-                            else{
-                                echo '<a href="allInformation.php">Все записи</a>';
-                            }
-                            
+                            if($_GET['page'] == 'Опрос') echo '<a href="pollHandler.php?dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Назад</a>';
+                            else if($_GET['page'] == 'ВсяИнформация') echo '<a href="allInformation.php">Назад</a>';
+                            else if($_GET['page'] == 'Район') echo '<a href="district.php?district='.$_GET['district'].'">Назад</a>';
+                            else if($_GET['page'] == 'Округ') echo '<a href="admArea.php?admArea='.$_GET['admArea'].'">Назад</a>';
                         ?>
                     </li>
                 </ul>
@@ -209,34 +203,6 @@
                             echo ' <h4>Так же оказываются такие услуги, как: ' . $entry['servicesSummer'] . '.</h4>';
                         else
                             echo '';  
-
-                        if($_GET['page'] == 'Опрос') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
-                        else if($_GET['page'] == 'ВсяИнформация') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
-                        else if($_GET['page'] == 'Район') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
-                        else if($_GET['page'] == 'Округ') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
-                        else  $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
-
-                        echo '<div class="mark">
-                            <form action="'.$parametrsMark.'" method="post">
-                                <div class="radioBut">
-                                    <input type="radio" id="1" name="grade" value="1">
-                                    <label for="1">1</label>
-                                
-                                    <input type="radio" id="2" name="grade" value="2">
-                                    <label for="2">2 </label>
-                                
-                                    <input type="radio" id="3" name="grade" value="3">
-                                    <label for="4">3</label>
-            
-                                    <input type="radio" id="4" name="grade" value="4">
-                                    <label for="4">4</label>
-            
-                                    <input type="radio" id="5" name="grade" value="5">
-                                    <label for="5">5</label>
-                                </div>
-                                <input type="submit" value="Оценить">
-                                </div>
-                            </form>';
                         // комментарии 
                         $stmt = $connect->prepare("SELECT * FROM comments WHERE id_field = ?");
                         $stmt->bind_param("i", $entry['id']);
@@ -259,28 +225,60 @@
                                     echo '<div class="comment"> '.$comments['comment'].' </div>';
                                 }
                                 else{
-                                    
                                     if($session_user['role'] == 1 || $session_user['role'] == 2)
                                         echo '<div class="comment"> '.$comments['comment'].'<br><a href="deleteComment.php?id='.$comments['id'].'&id_field='.$entry['id'].'&page='.$_GET['page'].'"> Удалить </a></div>';    
                                     else
-                                        echo '';
+                                        echo '<div class="comment"> '.$comments['comment'].' </div>';
                                 }
                             }
                         }
                         
-                        // форма для добавления комментов
-                        if($_GET['page'] == 'Опрос') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
-                        else if($_GET['page'] == 'ВсяИнформация') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
-                        else if($_GET['page'] == 'Район') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
-                        else if($_GET['page'] == 'Округ') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
-                        else  $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
+                        if(!$session_user){
+                            echo '';
+                        }
+                        else {
+                            // форма для добавления комментов
+                            if($_GET['page'] == 'Опрос') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
+                            else if($_GET['page'] == 'ВсяИнформация') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
+                            else if($_GET['page'] == 'Район') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
+                            else if($_GET['page'] == 'Округ') $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
+                            else  $parametrs = 'commentAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
 
-                        echo '<div class="commentAdd">
-                                <form action="'.$parametrs.'" method="POST">
-                                    <textarea name="comment" id="text" cols="61" rows="2" placeholder="Комментарий"></textarea>
-                                    <input type="submit" value="Добавить комментарий">
-                                </form>
-                            </div>';   
+                            echo '<div class="commentAdd">
+                                    <form action="'.$parametrs.'" method="POST">
+                                        <textarea name="comment" id="text" cols="61" rows="2" placeholder="Комментарий"></textarea>
+                                        <input type="submit" value="Добавить комментарий">
+                                    </form>
+                                </div>'; 
+                            
+                                if($_GET['page'] == 'Опрос') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
+                                else if($_GET['page'] == 'ВсяИнформация') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
+                                else if($_GET['page'] == 'Район') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
+                                else if($_GET['page'] == 'Округ') $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
+                                else  $parametrsMark = 'ratingAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
+        
+                            echo '<br><div class="mark">
+                                <form action="'.$parametrsMark.'" method="post">
+                                    <div class="radioBut">
+                                        <input type="radio" id="1" name="grade" value="1">
+                                        <label for="1">1</label>
+                                    
+                                        <input type="radio" id="2" name="grade" value="2">
+                                        <label for="2">2 </label>
+                                    
+                                        <input type="radio" id="3" name="grade" value="3">
+                                        <label for="4">3</label>
+                
+                                        <input type="radio" id="4" name="grade" value="4">
+                                        <label for="4">4</label>
+                
+                                        <input type="radio" id="5" name="grade" value="5">
+                                        <label for="5">5</label>
+                                    </div>
+                                    <input type="submit" value="Оценить">
+                                    </div>
+                                </form>';
+                        }
                     }
                 ?>
                 

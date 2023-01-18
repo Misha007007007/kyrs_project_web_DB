@@ -21,11 +21,12 @@
 
             if(!$result || mysqli_num_rows($result) == 0){
                 echo "<h2>Такой пользователь не существует или введены неверные данные.</h2>";
-                header('Refresh: 2; authorization.php');
+                header('Refresh: 2; http://localhost:3000/authorization.php');
             }else{
                 session_start();
                 $_SESSION["user"] = mysqli_fetch_assoc($result);
-                header("Location: lk.php");
+                if ($session_user['role'] == 1 || $session_user['role'] == 2) header("Location: lk.php");
+                else header("Location: http://localhost:3000/index.php");
             }
         ?>
     </div>
