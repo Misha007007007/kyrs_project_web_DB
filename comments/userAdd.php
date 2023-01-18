@@ -1,4 +1,4 @@
-<?php require("layoutFiles/header.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
             </ul>
         </div>
     </div>
@@ -7,13 +7,13 @@
     <div class="container">
         <?php
         
-        require("connectdb.php");
-        require("session.php");
+        require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+        require("C:/localhost/front/kyrs_project_web/layoutFiles/session.php");
         $examination = 2;
         // echo count($_POST);
         if($_POST['user_name'] == null || $_POST['name'] == null || $_POST['admArea'] == null || $_POST['district'] == null || $_POST['address'] == null || $_POST['comment'] == null){
             echo "<h2>Невозможно добавить данное место. Вы заполнили не все поля.</h2>";
-            header('Refresh: 2; create.php');
+            header('Refresh: 2; http://localhost:3000/comments/create.php');
             
         }
         else{
@@ -30,15 +30,15 @@
                 $stmt->bind_param("ssssssi", $_POST['user_name'], $_POST['name'], $_POST['admArea'], $_POST['district'], $_POST['address'], $_POST['comment'], $examination);
                 $result = $stmt->execute();
                 echo "<h2>Введенные Вами данные отправлены администратору. После проверки они поступят в базу данных</h2>";
-                header('Refresh: 4; index.php');
+                header('Refresh: 4; http://localhost:3000/index.php');
             }
             else{
                 echo "<h2>Невозможно добавить данное место. Возможно, оно уже есть в нашей базе данных.</h2>";
-                header('Refresh: 4; create.php');
+                header('Refresh: 4; http://localhost:3000/comments/create.php');
             }
         }
         
         ?>
     </div>
 </section>
-<?php require("layoutFiles/footer.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
