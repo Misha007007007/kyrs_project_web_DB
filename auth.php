@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?> 
+<?php require("layoutFiles/header.php") ?> 
             </ul>
         </div>
     </div>
@@ -7,7 +7,7 @@
     <div class="container">
         <?php
 
-            require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+            require("connectdb.php");
             $stmt = $connect->prepare("SELECT * FROM `user` WHERE `login`= ? AND `password_hash` = ?");
             $pass = md5($_POST["password"]);
             $stmt->bind_param("ss", $_POST["login"], $pass);
@@ -21,7 +21,7 @@
 
             if(!$result || mysqli_num_rows($result) == 0){
                 echo "<h2>Такой пользователь не существует или введены неверные данные.</h2>";
-                header('Refresh: 2; http://localhost:3000/user/authorization.php');
+                header('Refresh: 2; http://localhost:3000/authorization.php');
             }else{
                 session_start();
                 $_SESSION["user"] = mysqli_fetch_assoc($result);
@@ -31,4 +31,4 @@
         ?>
     </div>
 </section>
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+<?php require("layoutFiles/footer.php") ?>

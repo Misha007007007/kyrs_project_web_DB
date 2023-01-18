@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?> 
+<?php require("layoutFiles/header.php") ?> 
             </ul>
         </div>
     </div>
@@ -9,14 +9,14 @@
             // echo $_POST['name'];
             // echo count($_POST);
 
-            require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
-            require("C:/localhost/front/kyrs_project_web/layoutFiles/session.php");
+            require("connectdb.php");
+            require("session.php");
             $examination = 1;
             
 
             if($_POST['user_name'] == "" || $_POST['name'] == "" || $_POST['admArea'] == "" || $_POST['district'] == null || $_POST['address'] == null || $_POST['comment'] == null){
                 echo "<h3>Невозможно добавить данное место. Заполнены не все поля.</h3>";
-                header('Refresh: 2; http://localhost:3000/user/lk.php');
+                header('Refresh: 2; lk.php');
             }
             else{
                 if($session_user["role"] == 1 || $session_user["role"] == 2){
@@ -24,14 +24,14 @@
                     $stmt->bind_param("ssssssii", $_POST['user_name'], $_POST['name'], $_POST['admArea'], $_POST['district'], $_POST['address'], $_POST['comment'], $examination, $_GET['id']);
                     $result = $stmt->execute();
                     echo "<h3>Запись добавлена</h3>";
-                    header('Refresh: 2; http://localhost:3000/user/lk.php');
+                    header('Refresh: 2; lk.php');
                 }
                 else{
                     echo "<h3>Вы не можете добавить данную запись.</h3>";
-                    header('Refresh: 2; http://localhost:3000/user/lk.php');
+                    header('Refresh: 2; lk.php');
                 }
             }
         ?>
     </div>
 </section>
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+<?php require("layoutFiles/footer.php") ?>

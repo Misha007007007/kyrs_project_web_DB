@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+<?php require("layoutFiles/header.php") ?>
 
                    
                 </ul>
@@ -11,7 +11,7 @@
             <div class="links">
                 <h1>Ледовые поля, содержащиеся в нашей базе данных</h1>
                 <?php
-                    require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+                    require("connectdb.php");
                     $interview = "ВсяИнформация";
                     $result = mysqli_query($connect, "SELECT * FROM field WHERE 1");
 
@@ -51,4 +51,4 @@
             
         </div>
     </section>
-    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+    <?php require("layoutFiles/footer.php") ?>

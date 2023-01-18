@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+<?php require("layoutFiles/header.php") ?>
                 </ul>
             </div>
         </div>
@@ -6,14 +6,14 @@
 
     <section id = "about" class="about">
         <?php
-            require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+            require("connectdb.php");
             $query = "SELECT DISTINCT admArea FROM `field` ORDER BY admArea";
             $result = mysqli_query($connect, $query);
         ?>
         <div class="container">
             <h3> Выбери из списка административный округ Москвы и мы подберем для тебя катки в нем. </h3>
             <div class="connection" id = "connection">
-                <form action="http://localhost:3000/selectionByAdmArea/admArea.php" method="post">
+                <form action="admArea.php" method="post">
                     <select size="1" style="width: 330px; " name = "admArea" id = "admArea">
                         <option disabled>Выберети один вариант</option>
                         <?php while($row = mysqli_fetch_assoc($result)){?>
@@ -25,4 +25,4 @@
             </div>
         </div>
     </section>
-    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+    <?php require("layoutFiles/footer.php") ?>

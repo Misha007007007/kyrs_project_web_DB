@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+<?php require("layoutFiles/header.php") ?>
 
                 </ul>
             </div>
@@ -16,7 +16,7 @@
                         <option disabled>Выберети один вариант</option>
                         <option value="Район не важен" name = "2">Район не важен</option>
                         <?php
-                            require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+                            require("connectdb.php");
                             $query = "SELECT DISTINCT district FROM `field` ORDER BY district";
                             $result = mysqli_query($connect, $query);
                             while($row = mysqli_fetch_assoc($result)){
@@ -50,4 +50,4 @@
             </div>
         </div>
     </section>
-    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+    <?php require("layoutFiles/footer.php") ?>

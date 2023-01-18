@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+<?php require("layoutFiles/header.php") ?>
 
                 </ul>
             </div>
@@ -23,7 +23,7 @@
                 }
                 echo "</h3>";
                 
-                require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+                require("connectdb.php");
                 
                 
                 $stmt = $connect->prepare("SELECT * FROM `field` WHERE district = ?");
@@ -35,10 +35,10 @@
 
                 //$row = mysqli_fetch_row($result);
                 while($entry = mysqli_fetch_assoc($result)){
-                    require("C:/localhost/front/kyrs_project_web/information/shortInfo.php");
-                    echo '<div class="links"> <li><a href="http://localhost:3000/information/addInfo.php?id='.$entry['id'].'&page='.$interview.'&district='.$dictrict.'">Дополнительная информация</a></li></ul> </div>';
+                    require("shortInfo.php");
+                    echo '<div class="links"> <li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'&district='.$dictrict.'">Дополнительная информация</a></li></ul> </div>';
                 }
             ?>
         </div>
     </section>
-    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+    <?php require("layoutFiles/footer.php") ?>

@@ -5,8 +5,8 @@
         </div>
     </header>
 <?php
-    if (array_key_exists('type',$_GET) == false) $type = 'http://localhost:3000/user/reg.php?type=2';
-    else $type = 'http://localhost:3000/user/reg.php?type=3';
+    if (array_key_exists('type',$_GET) == false) $type = 'reg.php?type=2';
+    else $type = 'reg.php?type=3';
 ?>
     <section id = "about" class="about">
         <div class="connection" id = "connection">

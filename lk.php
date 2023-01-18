@@ -1,9 +1,9 @@
 <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
 
                     <?php
-                        require("C:/localhost/front/kyrs_project_web/layoutFiles/session.php");
+                        require("session.php");
                         if($session_user['role'] == 1){
-                            echo '<li> <a href="http://localhost:3000/user/regUser.php"> Зарегистрировать пользователя </a> </li>';
+                            echo '<li> <a href="regUser.php"> Зарегистрировать пользователя </a> </li>';
                         }else{
                             echo "";
                         }  
@@ -17,7 +17,7 @@
     <section id = "about" class="about">
         <div class="container">
            <?php
-                require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+                require("connectdb.php");
                 
                 
                 $result = mysqli_query($connect, "SELECT * FROM addedPlaces WHERE examination = 2");
@@ -34,7 +34,7 @@
                         // echo $entry['id'];
                         echo '
                         <div class="validation" id = "validation">
-                            <form action="http://localhost:3000/admin/adminAdd.php?id='.$entry['id'].'" method="post">
+                            <form action="adminAdd.php?id='.$entry['id'].'" method="post">
                                 <textarea name="user_name" id="text" cols="61" rows="2" >' . $entry['user_name'] . '</textarea><br>
                                 <textarea name="name" id="text" cols="61" rows="2" >' . $entry['name'] . '</textarea><br>
                                 <textarea name="admArea" id="text" cols="61" rows="2" >' . $entry['admArea'] . '</textarea><br>
@@ -42,7 +42,7 @@
                                 <textarea name="address" id="text" cols="61" rows="2" >' . $entry['address'] . '</textarea><br>
                                 <textarea name="comment" id="text" cols="61" rows="2" >' . $entry['comment'] . '</textarea>
                                 <input type="submit" value="Добавить"><br>
-                                <a href="http://localhost:3000/admin/adminDelete.php?id='.$entry['id'].'">Удалить</a>
+                                <a href="adminDelete.php?id='.$entry['id'].'">Удалить</a>
                             </form>    
                                    
                         <div>';  
