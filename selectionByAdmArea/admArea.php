@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+<?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/header.php") ?>
                 </ul>
             </div>
         </div>
@@ -24,7 +24,7 @@
                     echo "</h3>";
                 }
                 
-                require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+                require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/connectdb.php");
                 
                 $stmt = $connect->prepare("SELECT * FROM `field` WHERE admArea = ?");
                 $stmt->bind_param("s", $admArea);
@@ -35,10 +35,10 @@
 
                 //$row = mysqli_fetch_row($result);
                 while($entry = mysqli_fetch_assoc($result)){
-                    require("C:/localhost/front/kyrs_project_web/information/shortInfo.php");
-                    echo '<div class="links">  <li><a href="http://localhost:3000/information/addInfo.php?id='.$entry['id'].'&page='.$interview.'&admArea='.$admArea.'">Дополнительная информация</a></li></ul></div>';
+                    require("/var/www/u1840628/data/www/andreitsev.ru/information/shortInfo.php");
+                    echo '<div class="links">  <li><a href="https://andreitsev.ru/information/addInfo.php?id='.$entry['id'].'&page='.$interview.'&admArea='.$admArea.'">Дополнительная информация</a></li></ul></div>';
                 }
             ?>
         </div>
     </section>
-    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+    <?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/footer.php") ?>

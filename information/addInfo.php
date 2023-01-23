@@ -1,11 +1,9 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
-                    <li>
-                        <?php
-                            require("C:/localhost/front/kyrs_project_web/layoutFiles/session.php");
-                            if($_GET['page'] == 'Опрос') echo '<a href="http://localhost:3000/interview/pollHandler.php?dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Назад</a>';
-                            else if($_GET['page'] == 'ВсяИнформация') echo '<a href="allInformation.php">Назад</a>';
-                            else if($_GET['page'] == 'Район') echo '<a href="http://localhost:3000/selectionByDistrict/district.php?district='.$_GET['district'].'">Назад</a>';
-                            else if($_GET['page'] == 'Округ') echo '<a href="http://localhost:3000/selectionByAdmArea/admArea.php?admArea='.$_GET['admArea'].'">Назад</a>';
+<?php session_start();
+require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/header.php");
+                            if($_GET['page'] == 'Опрос') echo '<li><a href="https://andreitsev.ru/interview/pollHandler.php?dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Назад</a></li>';
+                            else if($_GET['page'] == 'ВсяИнформация') echo '<li><a href="allInformation.php">Назад</a></li></li>';
+                            else if($_GET['page'] == 'Район') echo '<li><a href="https://andreitsev.ru/selectionByDistrict/district.php?district='.$_GET['district'].'">Назад</a></li>';
+                            else if($_GET['page'] == 'Округ') echo '<li><a href="https://andreitsev.ru/selectionByAdmArea/admArea.php?admArea='.$_GET['admArea'].'">Назад</a></li>';
                         ?>
                     </li>
                 </ul>
@@ -18,7 +16,7 @@
             <div class="info">
                 <h1></h1>
                 <?php
-                    require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+                    require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/connectdb.php");
 
                     $stmt = $connect->prepare("SELECT * FROM field WHERE id = ?");
                     $stmt->bind_param("s", $_GET['id']);
@@ -67,14 +65,14 @@
                         } 
                         $latitude = $entry['latitude'];
                         $longitude = $entry['longitude'];
-                        if($_GET['page'] == 'Опрос') echo '<h3><div class="mapLink"><a href="http://localhost:3000/map/map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
-                        else if($_GET['page'] == 'ВсяИнформация') echo '<h3><div class="mapLink"><a href="http://localhost:3000/map/map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
-                        else if($_GET['page'] == 'Район') echo '<h3><div class="mapLink"><a href="http://localhost:3000/map/map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
-                        else if($_GET['page'] == 'Округ') echo '<h3><div class="mapLink"><a href="http://localhost:3000/map/map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
-                        else  echo '<h3><div class="mapLink"><a href="http://localhost:3000/map/map.html?id_field='.$entry['id'].'&page=ВсяИнформация.&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
+                        if($_GET['page'] == 'Опрос') echo '<h3><div class="mapLink"><a href="https://andreitsev.ru/map/map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
+                        else if($_GET['page'] == 'ВсяИнформация') echo '<h3><div class="mapLink"><a href="https://andreitsev.ru/map/map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
+                        else if($_GET['page'] == 'Район') echo '<h3><div class="mapLink"><a href="https://andreitsev.ru/map/map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
+                        else if($_GET['page'] == 'Округ') echo '<h3><div class="mapLink"><a href="https://andreitsev.ru/map/map.html?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
+                        else  echo '<h3><div class="mapLink"><a href="https://andreitsev.ru/map/map.html?id_field='.$entry['id'].'&page=ВсяИнформация.&latitude='.$latitude.'&longitude='.$longitude.'">Посмотреть местоположение на карте</a></div></h3>';
 
                         $stmt = $connect->prepare("SELECT * FROM rating WHERE id_field = ?");
-                        $stmt->bind_param("s", $entry['id']);
+                        $stmt->bind_param("i", $entry['id']);
     
                         $resultRating = $stmt->execute();
                         $resultRating = mysqli_stmt_get_result($stmt);
@@ -82,11 +80,11 @@
     
                         $entryRating = mysqli_fetch_assoc($resultRating);
                         if(!$resultRating || mysqli_num_rows($resultRating) == 0){
-                            echo "<h4>Пока не один пользователь не оценил данное место.</h4>";
+                            echo "<h3>Пока не один пользователь не оценил данное место.</h3>";
                         }
                         else{
                             $averageResult = $entryRating['sum'] / $entryRating['number'];
-                            echo "<h4>Рейтинг, определенный оценками пользоваетлей: $averageResult из 5 </h4>";
+                            echo "<h3>Рейтинг, определенный оценками пользоваетлей: $averageResult из 5 </h3>";
                         }
 
                         echo '<table border="1">
@@ -190,17 +188,17 @@
                         
                         if ($entry['nameSummer'] != null)
                             echo ' <h3>Информация о ледовом поле во время летнего периода</h3>
-                            <h4>Название спортивной зоны в летний период - " ' . $entry['nameSummer'] . '"</h4>';
+                            <h3>Название спортивной зоны в летний период - " ' . $entry['nameSummer'] . '"</h3>';
                         else
                             echo '<h3>Информация о ледовом поле во время летнего периода</h3>';
 
                         if ($entry['surfaceTypeSummer'] != null)
-                            echo ' <h4>Во время летнего периода покрытием на площадке является ' . $entry['surfaceTypeSummer'] . '.</h4>';
+                            echo ' <h3>Во время летнего периода покрытием на площадке является ' . $entry['surfaceTypeSummer'] . '.</h3>';
                         else
                             echo '';
 
                         if ($entry['servicesSummer'] != null)
-                            echo ' <h4>Так же оказываются такие услуги, как: ' . $entry['servicesSummer'] . '.</h4>';
+                            echo ' <h3>Так же оказываются такие услуги, как: ' . $entry['servicesSummer'] . '.</h3>';
                         else
                             echo '';  
                         // комментарии 
@@ -221,41 +219,41 @@
                         else{
                             while($comments = mysqli_fetch_assoc($resultComment)){
                                 
-                                if(!$session_user){
+                                if(!$_SESSION["role"]){
                                     echo '<div class="comment"> '.$comments['comment'].' </div>';
                                 }
                                 else{
-                                    if($session_user['role'] == 1 || $session_user['role'] == 2)
-                                        echo '<div class="comment"> '.$comments['comment'].'<br><a href="http://localhost:3000/admin/deleteComment.php?id='.$comments['id'].'&id_field='.$entry['id'].'&page='.$_GET['page'].'"> Удалить </a></div>';    
+                                    if($_SESSION["role"] == 1 || $_SESSION["role"] == 2)
+                                        echo '<div class="comment"> '.$comments['comment'].'<br><a href="https://andreitsev.ru/admin/deleteComment.php?id='.$comments['id'].'&id_field='.$entry['id'].'&page='.$_GET['page'].'"> Удалить </a></div>';    
                                     else
                                         echo '<div class="comment"> '.$comments['comment'].' </div>';
                                 }
                             }
                         }
                         
-                        if(!$session_user){
+                        if(!$_SESSION["role"]){
                             echo '';
                         }
                         else {
                             // форма для добавления комментов
-                            if($_GET['page'] == 'Опрос') $parametrs = 'http://localhost:3000/comments/commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
-                            else if($_GET['page'] == 'ВсяИнформация') $parametrs = 'http://localhost:3000/comments/commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
-                            else if($_GET['page'] == 'Район') $parametrs = 'http://localhost:3000/comments/commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
-                            else if($_GET['page'] == 'Округ') $parametrs = 'http://localhost:3000/comments/commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
-                            else  $parametrs = 'http://localhost:3000/comments/commentAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
+                            if($_GET['page'] == 'Опрос') $parametrs = 'https://andreitsev.ru/comments/commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
+                            else if($_GET['page'] == 'ВсяИнформация') $parametrs = 'https://andreitsev.ru/comments/commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
+                            else if($_GET['page'] == 'Район') $parametrs = 'https://andreitsev.ru/comments/commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
+                            else if($_GET['page'] == 'Округ') $parametrs = 'https://andreitsev.ru/comments/commentAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
+                            else  $parametrs = 'https://andreitsev.ru/comments/commentAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
 
                             echo '<div class="commentAdd">
                                     <form action="'.$parametrs.'" method="POST">
-                                        <textarea name="comment" id="text" cols="61" rows="2" placeholder="Комментарий"></textarea>
+                                        <textarea name="comment" id="text" cols="45" rows="2" placeholder="Комментарий"></textarea>
                                         <input type="submit" value="Добавить комментарий">
                                     </form>
                                 </div>'; 
                             
-                                if($_GET['page'] == 'Опрос') $parametrsMark = 'http://localhost:3000/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
-                                else if($_GET['page'] == 'ВсяИнформация') $parametrsMark = 'http://localhost:3000/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
-                                else if($_GET['page'] == 'Район') $parametrsMark = 'http://localhost:3000/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
-                                else if($_GET['page'] == 'Округ') $parametrsMark = 'http://localhost:3000/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
-                                else  $parametrsMark = 'http://localhost:3000/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
+                                if($_GET['page'] == 'Опрос') $parametrsMark = 'https://andreitsev.ru/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';
+                                else if($_GET['page'] == 'ВсяИнформация') $parametrsMark = 'https://andreitsev.ru/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
+                                else if($_GET['page'] == 'Район') $parametrsMark = 'https://andreitsev.ru/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
+                                else if($_GET['page'] == 'Округ') $parametrsMark = 'https://andreitsev.ru/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
+                                else  $parametrsMark = 'https://andreitsev.ru/userRatings/ratingAnalysis.php?id_field='.$entry['id'].'&page=ВсяИнформация';
         
                             echo '<br><div class="mark">
                                 <form action="'.$parametrsMark.'" method="post">
@@ -285,4 +283,4 @@
             </div> 
         </div>
     </section>
-    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+    <?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/footer.php") ?>

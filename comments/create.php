@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+<?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/header.php") ?>
 
                 </ul>
             </div>
@@ -12,15 +12,15 @@
             <h3> Но обязательно рядом. </h3>
             <div class="connection" id = "connection">
                 <form action="userAdd.php" method="post">
-                    <input type="text" maxlength="50" size="70" name="user_name" placeholder="Ваше имя"><br>
-                    <input type="text" maxlength="50" size="70" name="name" placeholder="Название ледового поля"><br>
-                    <input type="text" maxlength="50" size="70" name="admArea" placeholder="Административный округ"><br>
-                    <input type="text" maxlength="50" size="70" name="district" placeholder="Район"><br>
-                    <input type="text" maxlength="50" size="70" name="address" placeholder="Адрес"><br>
-                    <textarea name="comment" id="text" cols="61" rows="10" placeholder="Комментарий"></textarea>
+                    <input type="text" maxlength="50" size="45" name="user_name" placeholder="Ваше имя"><br>
+                    <input type="text" maxlength="50" size="45" name="name" placeholder="Название ледового поля"><br>
+                    <input type="text" maxlength="50" size="45" name="admArea" placeholder="Административный округ"><br>
+                    <input type="text" maxlength="50" size="45" name="district" placeholder="Район"><br>
+                    <input type="text" maxlength="50" size="45" name="address" placeholder="Адрес"><br>
+                    <textarea name="comment" id="text" cols="45" rows="10" placeholder="Комментарий"></textarea>
                     <input type="submit" value="Добавить">
                 </form>
             </div>
         </div>
     </section>
-    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+    <?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/footer.php") ?>

@@ -49,22 +49,16 @@
     color: #07bbba;
 }
 
-.links a:hover, .mapLink a:hover, .linkRating a:hover, .commentLink a:hover, .interviewLink a:hover{
+.links a:hover, .mapLink a:hover, .linkRating a:hover, .commentLink a:hover, .interviewLink a:hover, .answer a:hover{
     font-size: 20px;
     font-weight: 700;
     color: #000;
 }
 
-.functionList li a:hover{
+.container .functionList a:hover{
     font-size: 20px;
     font-weight: 700;
     color: #07bbba; 
-}
-
-.map{
-    width: 500px;
-    height: 500px;
-    background-color: #000;
 }
 
 .fig{
@@ -81,42 +75,43 @@
 .about h2{
     color: #000;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 35px;
+    margin-top: 35px;
+    margin-bottom: 20px;
 }
 
 .about h4{
     color: #000;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 35px;
+    margin-top: 35px;
+    margin-bottom: 20px;
 }
 
 .about h3{
     color: #000;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 35px;
+    margin-top: 35px;
+    margin-bottom: 20px;
 }
 
-.functionList {
-    /* display: flex; */
+.container .functionList {
+    /*display: flex; */
+    margin: 35px;
     align-items: center;
-    padding-left: 50px;
-    height: 90px;  
+    /* padding-left: 50px; */
+    /*height: 90px;  */
 }
 
-.functionList li a{
+.container .functionList a{
     text-transform: uppercase;
     text-decoration: none;
     color: #000;
+    padding-bottom: 20px;
 }
 
-.functionList li {
+.container .functionList{
     list-style-type: none;
-    margin-right: 50px;
+    /* margin-right: 50px; */
 }
-
 
 .about p{
     text-align: center;
@@ -280,17 +275,6 @@ a{
     cursor: pointer;
     
     /* margin-left: 30%; */
-}
-
-.map {
-	width: 500px;
-	height: 500px;
-	background-color: #fff;
-	margin-left: auto;
-    margin-right: auto;
-	margin-top: 5%;
-    border: #000;
-    margin-bottom: 20px;
 }
 
 .mapLink{

@@ -2,7 +2,7 @@
 
 echo '<br><div class="links">';
 echo '<h4>' . $entry['objectName'] . '</h4> 
-<p>Данное место расположено по адресу: ' . $entry['admArea'] . ', ' . $entry['district'] . ',  ' . $entry['address'] . '.</p>
+<p>Данное место расположено по адресу: ' . $entry['admArea'] . ', ' . $entry['district'] . ',  ' . $entry['address'] . '.</p><br>
 <p>Для связи используйте: </p>
 <ul>';
 if ($entry['email'] != null)
@@ -19,7 +19,7 @@ else
 
 if ($entry['helpPhone'] != null)
     
-    echo '<li> Справочный телефон: ' . $entry['helpPhone'] . '</li>';
+    echo '<li> Справочный телефон: <a href="tel:' . $entry['helpPhone'] . '"> ' . $entry['helpPhone'] . '</a></li>';
 else
     echo "";
 

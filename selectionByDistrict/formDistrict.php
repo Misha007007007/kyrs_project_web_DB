@@ -1,4 +1,4 @@
-<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
+<?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/header.php") ?>
 
                     
                 </ul>
@@ -10,11 +10,11 @@
         <div class="container">
             <h3> Выбери из списка район Москвы и мы подберем для тебя катки в этом районе. </h3>
             <div class="connection" id = "connection">
-                <form action="http://localhost:3000/selectionByDistrict/district.php" method="post">
+                <form action="https://andreitsev.ru/selectionByDistrict/district.php" method="post">
                     <select size="1" style="width: 250px; " name = "district" id = "district">
                         <option disabled>Выберети один вариант</option>
                         <?php
-                            require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
+                            require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/connectdb.php");
                             $query = "SELECT DISTINCT district FROM `field` ORDER BY district";
                             $result = mysqli_query($connect, $query);
                             while($row = mysqli_fetch_assoc($result)){
@@ -27,4 +27,4 @@
             </div>
         </div>
     </section>
-    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
+    <?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/footer.php") ?>

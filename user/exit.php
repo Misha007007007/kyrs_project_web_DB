@@ -1,5 +1,7 @@
 <?php
-require("C:/localhost/front/kyrs_project_web/layoutFiles/session.php");
-session_destroy();
-header('Location: http://localhost:3000/index.php');
+session_start();
+unset($_SESSION["login"]);
+unset($_SESSION["pass"]);
+unset($_SESSION["role"]);
+header('Location: https://andreitsev.ru/index.php');
 ?>

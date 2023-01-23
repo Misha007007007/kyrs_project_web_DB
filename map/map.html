@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost:3000/css/main.css">
+    <link rel="stylesheet" href="https://andreitsev.ru/css/main.css">
     <title>Ледовые поля</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Antonio:wght@100&display=swap" rel="stylesheet">
@@ -16,7 +15,7 @@
             <div class="nav">
                 <ul class = "menu">
                     <li>
-                        <a href="index.php">
+                        <a href="https://andreitsev.ru/index.php">
                             Ice fields
                         </a>
                     </li>
@@ -49,16 +48,17 @@
                 console.log(id_field);  
             </script>
             <!-- подключение Яндекс.карт -->
-            <div id="map-test" class="map"></div>
-            <script src="https://api-maps.yandex.ru/2.1/?apikey=efc76c8c-1909-4c93-bc76-1cb1a2189cd6&lang=ru_RU">
-            </script>
+            <div id="map-test" class="map" style=" width: 400px; height: 400px; background-color: #000; margin-left: auto;
+    margin-right: auto;">
+            <script src="https://api-maps.yandex.ru/2.1/?apikey=efc76c8c-1909-4c93-bc76-1cb1a2189cd6&lang=ru_RU"></script>
+            </div>
             <script>
                 let center = [longitude,latitude];
 
                 function init() {
                     let map = new ymaps.Map('map-test', {
                         center: center,
-                        zoom: 15
+                        zoom: 14
                     });
                     // точка на карте с измененной иконкой.
                     let placemark = new ymaps.Placemark(center, {}, { 
@@ -74,13 +74,13 @@
                 }
 
                 ymaps.ready(init); 
-                document.write('<div class="mapLink"><a href=http://localhost:3000/information/addInfo.php?id=' + id_field + '&page=' + page + '&admArea=' + admArea + '&dictrict=' + dictrict + '&district=' + district + '&incompleteQuery=' + incompleteQuery +'>Вернуться к информации о ледовом поле</a></div>'); 
+                document.write('<div class="mapLink"><a href=https://andreitsev.ru/information/addInfo.php?id=' + id_field + '&page=' + page + '&admArea=' + admArea + '&dictrict=' + dictrict + '&district=' + district + '&incompleteQuery=' + incompleteQuery +'>Вернуться к информации о ледовом поле</a></div>'); 
             </script>
         </div>
     </section>
     <footer id = "footer" class="footer">
         <div class="container">
-            
+            <p>© 2023 Copyright IseHelper</p>
         </div>
     </footer>
 </body>
