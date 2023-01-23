@@ -1,4 +1,4 @@
-<?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/header.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
                     <li>
                         <a href="interviewOne.php">
                             Пройти опрос заново
@@ -12,7 +12,7 @@
     <section id = "about" class="about">
         <div class="container">
             <?php
-                require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/connectdb.php");
+                require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
                 $interview = "Опрос";
                 $hasEquipmentRental;
                 $hasTechService;
@@ -78,24 +78,24 @@
                 
                 if(!$result || mysqli_num_rows($result) == 0){
                     echo '<div calss="answer"><h3>К сожалению, мы не нашли для Вас подходящего ледового поля.</h3>
-                    <h3>Вы можете <a href="https://andreitsev.ru/interview/interviewOne.php" style="color: #07bbba; ">пройти опрос заново<a>.</h3>
-                    <h3>Посмотреть доступные ледовые поля в Вашем <a href="https://andreitsev.ru/selectionByDistrict/formDistrict.php" style="color: #07bbba; ">районе</a> или <a href="https://andreitsev.ru/selectionByAdmArea/formAdmArea.php" style="color: #07bbba; ">Административном округе</a>.</h3>
-                    <h3>или <a href="https://andreitsev.ru/information/allInformation.php" style="color: #07bbba; ">просмотреть общую информацию о ледовых полях</a>.</h3></div>';
+                    <h3>Вы можете <a href="http://localhost:3000/interview/interviewOne.php" style="color: #07bbba; ">пройти опрос заново<a>.</h3>
+                    <h3>Посмотреть доступные ледовые поля в Вашем <a href="http://localhost:3000/selectionByDistrict/formDistrict.php" style="color: #07bbba; ">районе</a> или <a href="http://localhost:3000/selectionByAdmArea/formAdmArea.php" style="color: #07bbba; ">Административном округе</a>.</h3>
+                    <h3>или <a href="http://localhost:3000/information/allInformation.php" style="color: #07bbba; ">просмотреть общую информацию о ледовых полях</a>.</h3></div>';
                 }
                 else{
                     while($entry = mysqli_fetch_assoc($result)){
-                        require("/var/www/u1840628/data/www/andreitsev.ru/information/shortInfo.php");
+                        require("C:/localhost/front/kyrs_project_web/infotmation/shortInfo.php");
                         if(array_key_exists('incompleteQuery',$_GET) == false){   
-                            echo '<div class="interviewLink"><li><a href="https://andreitsev.ru/information/addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_POST['district'].'&incompleteQuery='.$incompleteQuery.'">Дополнительная информация</a></li></div>';
+                            echo '<div class="interviewLink"><li><a href="http://localhost:3000/information/addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_POST['district'].'&incompleteQuery='.$incompleteQuery.'">Дополнительная информация</a></li></div>';
                         }
                         else{
-                            echo '<div class="interviewLink"><li><a href="https://andreitsev.ru/information/addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Дополнительная информация</a></li></div>';
+                            echo '<div class="interviewLink"><li><a href="http://localhost:3000/information/addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Дополнительная информация</a></li></div>';
                         }
                     }
                 }
             ?>
         </div>
     </section>
-    <?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/footer.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php"); ?>
 
 

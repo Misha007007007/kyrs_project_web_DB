@@ -1,12 +1,12 @@
-<?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/header.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
 
                 </ul>
             </div>
         </div>
     </header>
 <?php
-    if (array_key_exists('type',$_GET) == false) $type = 'https://andreitsev.ru/user/reg.php?type=2';
-    else $type = 'https://andreitsev.ru/user/reg.php?type=3';
+    if (array_key_exists('type',$_GET) == false) $type = 'http://localhost:3000/sreg.php?type=2';
+    else $type = 'http://localhost:3000/reg.php?type=3';
 ?>
     <section id = "about" class="about">
         <div class="connection" id = "connection">
@@ -20,4 +20,4 @@
         </div>
     </section>
 
-    <?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/footer.php") ?>
+    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>

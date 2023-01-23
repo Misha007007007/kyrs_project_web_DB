@@ -1,4 +1,4 @@
-<?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/header.php") ?>
+<?php require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php") ?>
 
                    
                 </ul>
@@ -11,7 +11,7 @@
             <div class="links">
                 <h1>Ледовые поля, содержащиеся в нашей базе данных</h1>
                 <?php
-                    require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/connectdb.php");
+                    require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
                     $interview = "ВсяИнформация";
                     $result = mysqli_query($connect, "SELECT * FROM field WHERE 1");
 
@@ -20,8 +20,8 @@
                     }
                     else{                   
                         while($entry = mysqli_fetch_assoc($result)){
-                            require("shortInfo.php");
-                            echo ' <li><a href="addInfo.php?id='.$entry['id'].'&page='.$interview.'">Дополнительная информация</a></li></ul>';
+                            require("C:/localhost/front/kyrs_project_web/information/shortInfo.php");
+                            echo ' <li><a href="http://localhost:3000/information/addInfo.php?id='.$entry['id'].'&page='.$interview.'">Дополнительная информация</a></li></ul>';
                         }
                     }
                 ?>
@@ -49,4 +49,4 @@
             
         </div>
     </section>
-    <?php require("/var/www/u1840628/data/www/andreitsev.ru/layoutFiles/footer.php") ?>
+    <?php require("C:/localhost/front/kyrs_project_web/layoutFiles/footer.php") ?>
