@@ -10,7 +10,7 @@
             <h3> Для того чтобы добавить информацию о ледовом поле, которого еще нет в нашей базе данных, тебе необходимо заполнить все поля. </h3>
             <h3> В комментарии можешь указать какие удобства есть на новом ледовом поле (раздевалки, точки wifi, ...) или адрес места, где можно вкусно покушать. </h3>
             <h3> Но обязательно рядом. </h3>
-            <div class="connection" id = "connection">
+            <div class="connection2" id = "connection">
                 <form action="userAdd.php" method="post">
                     <input type="text" maxlength="50" size="45" name="user_name" placeholder="Ваше имя"><br>
                     <input type="text" maxlength="50" size="45" name="name" placeholder="Название ледового поля"><br>

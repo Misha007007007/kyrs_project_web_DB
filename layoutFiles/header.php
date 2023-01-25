@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,3 +18,18 @@
                             <img src="http://localhost:3000/logo4.svg" alt="Ise Field">
                         </a>
                     </li>
+                    <?php
+                        if (!$_SESSION){
+                            echo '<li><a href="authorization.php">Личный кабинет</a></li>';
+                        }
+                        else if ($_SESSION["role"] == 1 || $_SESSION['role'] == 2){
+                            echo '<li><a href="lk.php">Личный кабинет</a></li> <li><a href="exit.php">Выход</a></li>';  
+                        } 
+                        else if ($_SESSION["role"] == 3){
+                            echo '<li><a href="lk.php">Личный кабинет</a></li> <li><a href="exit.php">Выход</a></li>';
+                        }else{
+                            echo '<li><a href="authorization.php">Личный кабинет</a></li>';
+                        }
+                        
+                        
+                    ?>

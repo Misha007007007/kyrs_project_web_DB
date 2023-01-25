@@ -1,16 +1,7 @@
 <?php
-session_start();
 require("layoutFiles/header.php");
 require("layoutFiles/connectdb.php");
-    if (!$_SESSION){
-        echo '<li><a href="user/authorization.php">Личный кабинет</a></li>';
-    }
-    else if ($_SESSION["role"] == 1 || $_SESSION['role'] == 2){
-        echo '<li><a href="user/lk.php">Личный кабинет админа</a></li> <li><a href="user/exit.php">Выход</a></li>';  
-    } 
-    else if ($_SESSION["role"] == 3){
-        echo '<li><a href="exit.php">Выход</a></li>';
-    }
+    
 ?>
                 </ul>
             </div>

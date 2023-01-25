@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php");
                             if($_GET['page'] == 'Опрос') echo '<li><a href="interview/pollHandler.php?dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].'">Назад</a></li>';
                             else if($_GET['page'] == 'ВсяИнформация') echo '<li><a href="allInformation.php">Назад</a></li></li>';
@@ -210,6 +210,20 @@ require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php");
                         
                         $stmt->close();
 
+                        if(!$_SESSION){
+                            echo '';
+                        }
+                        else {
+                            // избранные записи
+
+                            if($_GET['page'] == 'Опрос') $parametrsFavorit = 'http://localhost:3000/featuredEntries/entriesFavorit.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&dictrict='.$_GET['dictrict'].'&incompleteQuery='.$_GET['incompleteQuery'].' ';   
+                            else if($_GET['page'] == 'ВсяИнформация') $parametrsFavorit = 'http://localhost:3000/featuredEntries/entriesFavorit.php?id_field='.$entry['id'].'&page='.$_GET['page'].'';
+                            else if($_GET['page'] == 'Район') $parametrsFavorit = 'http://localhost:3000/featuredEntries/entriesFavorit.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&district='.$_GET['district'].'';
+                            else if($_GET['page'] == 'Округ') $parametrsFavorit = 'http://localhost:3000/featuredEntries/entriesFavorit.php?id_field='.$entry['id'].'&page='.$_GET['page'].'&admArea='.$_GET['admArea'].'';
+                            else  $parametrsFavorit = 'http://localhost:3000/featuredEntries/entriesFavorit.php?id_field='.$entry['id'].'&page=ВсяИнформация';
+                            
+                            echo '<h3><div class="mapLink"><a href="'.$parametrsFavorit.'">Добавить в избранное</a></div></h3>';
+                        }
                         
     
                         echo '<h1>Комментарии наших пользователей</h1>';

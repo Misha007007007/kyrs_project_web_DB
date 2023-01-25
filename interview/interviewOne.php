@@ -10,7 +10,7 @@
             <h3> Выбери из списка район Москвы в котором вы бы хотели подобрать ледовое поле. </h3>
             <h3> Также отметьте важные для Вас пункты, представленные в списке ниже. </h3>
             <h3> Возможно, Вам не подходит ни один пункт. В таком случае, оставьте поля пустыми. </h3>
-            <div class="connection" id = "connection">
+            <div class="connectiontwo" id = "connection">
                 <form action="pollHandler.php" method="post">
                     <select size="1" style="width: 300px; " name = "district" id = "district">
                         <option disabled>Выберети один вариант</option>

@@ -84,7 +84,7 @@
                 }
                 else{
                     while($entry = mysqli_fetch_assoc($result)){
-                        require("C:/localhost/front/kyrs_project_web/infotmation/shortInfo.php");
+                        require("C:/localhost/front/kyrs_project_web/information/shortInfo.php");
                         if(array_key_exists('incompleteQuery',$_GET) == false){   
                             echo '<div class="interviewLink"><li><a href="http://localhost:3000/information/addInfo.php?id='.$entry['id'].'&page='.$interview.'&dictrict='.$_POST['district'].'&incompleteQuery='.$incompleteQuery.'">Дополнительная информация</a></li></div>';
                         }

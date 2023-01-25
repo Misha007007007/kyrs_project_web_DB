@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
             require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
             require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php");?>
                 </ul>

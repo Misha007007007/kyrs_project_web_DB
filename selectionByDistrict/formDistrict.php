@@ -8,9 +8,10 @@
 
     <section id = "about" class="about">
         <div class="container">
-            <h3> Выбери из списка район Москвы и мы подберем для тебя катки в этом районе. </h3>
-            <div class="connection" id = "connection">
+            
+            <div class="connection" id = "connection" style="position: absolute; top: 30%; left: 50%; transform: translateY(-40%); transform: translateX(-50%);">
                 <form action="district.php" method="post">
+                    <h3> Выбери из списка район Москвы и мы подберем для тебя катки в этом районе. </h3>
                     <select size="1" style="width: 250px; " name = "district" id = "district">
                         <option disabled>Выберети один вариант</option>
                         <?php

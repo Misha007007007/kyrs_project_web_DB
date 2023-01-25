@@ -8,7 +8,7 @@
 <?php
 ?>
     <section id = "about" class="about">
-        <div class="connection" id = "connection">
+        <div class="connection" id = "connection" style="position: absolute; top: 35%; left: 50%; transform: translateY(-40%); transform: translateX(-50%);">
             <form action="auth.php?" method="post">
                 <p><b>Авторизация</b></p><br>
                 <input type="text" maxlength="30" size="40" name="login" placeholder="Введите Ваш логин"><br>

@@ -1,5 +1,5 @@
 <?php
-    session_start();
+
     require("C:/localhost/front/kyrs_project_web/layoutFiles/connectdb.php");
     require("C:/localhost/front/kyrs_project_web/layoutFiles/header.php");?>
                 </ul>
@@ -26,6 +26,7 @@
                 $_SESSION['login'] = $userData['login'];
                 $_SESSION["pass"] = $userData['password_hash'];
                 $_SESSION["role"] = $userData['role'];
+                $_SESSION["id_user"] = $userData['id'];
                 header("Location: http://localhost:3000/index.php");
             }
             ?>

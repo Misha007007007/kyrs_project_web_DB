@@ -11,9 +11,10 @@
             $result = mysqli_query($connect, $query);
         ?>
         <div class="container">
-            <h3> Выбери из списка административный округ Москвы и мы подберем для тебя катки в нем. </h3>
-            <div class="connection" id = "connection">
+            
+            <div class="connection" id = "connection" style="position: absolute; top: 30%; left: 50%; transform: translateY(-40%); transform: translateX(-50%);">
                 <form action="admArea.php" method="post">
+                <h3> Выбери из списка административный округ Москвы и мы подберем для тебя катки в нем. </h3>
                     <select size="1" style="width: 330px; " name = "admArea" id = "admArea">
                         <option disabled>Выберети один вариант</option>
                         <?php while($row = mysqli_fetch_assoc($result)){?>
